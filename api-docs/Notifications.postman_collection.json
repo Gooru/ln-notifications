@@ -1,0 +1,105 @@
+{
+	"id": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
+	"name": "Notifications",
+	"description": "",
+	"order": [
+		"0bad23bd-1d2c-1838-d358-2a3c304186eb",
+		"14f18164-1cac-25ce-9799-212fee02e71b"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1533119097592,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "0bad23bd-1d2c-1838-d358-2a3c304186eb",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/api/notifications/v1/student?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+			"queryParams": [
+				{
+					"key": "classId",
+					"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1533119200631,
+			"name": "Notifications Student Fetch",
+			"description": "",
+			"collectionId": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": ""
+		},
+		{
+			"id": "14f18164-1cac-25ce-9799-212fee02e71b",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/api/notifications/v1/teacher?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+			"queryParams": [
+				{
+					"key": "classId",
+					"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1533119178887,
+			"name": "Notifications Teacher Fetch",
+			"description": "",
+			"collectionId": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": ""
+		}
+	]
+}

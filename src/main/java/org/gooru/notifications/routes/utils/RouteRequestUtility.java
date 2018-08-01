@@ -39,7 +39,11 @@ public final class RouteRequestUtility {
                 Map<String, List<String>> prms = queryStringDecoder.parameters();
                 if (!prms.isEmpty()) {
                     for (Map.Entry<String, List<String>> entry : prms.entrySet()) {
-                        httpBody.put(entry.getKey(), entry.getValue());
+                        List<String> values = entry.getValue();
+                        if (values != null) {
+                            // We do not allow repetition of params and always use first one
+                            httpBody.put(entry.getKey(), entry.getValue().get(0));
+                        }
                     }
                 }
             }

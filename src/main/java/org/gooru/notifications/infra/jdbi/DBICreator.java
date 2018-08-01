@@ -25,9 +25,4 @@ public final class DBICreator {
     public static DBI getDbiForDefaultDS() {
         return createDBI(DataSourceRegistry.getInstance().getDefaultDataSource());
     }
-
-    public static DBI getDbiForDsdbDS() {
-        return createDBI(DataSourceRegistry.getInstance().getDsdbDataSource());
-    }
-
 }

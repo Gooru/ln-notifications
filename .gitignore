@@ -3,5 +3,8 @@
 /bin/
 .idea
 *.iml
+.classpath
+.project
+.out
 
 
