@@ -1,10 +1,10 @@
 {
-	"id": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
+	"id": "a8bcf152-71b6-dce4-e31e-e06d25b9aa38",
 	"name": "Notifications",
 	"description": "",
 	"order": [
-		"0bad23bd-1d2c-1838-d358-2a3c304186eb",
-		"14f18164-1cac-25ce-9799-212fee02e71b"
+		"36b04f9b-d71c-94cd-f354-a5a5b491b7e1",
+		"215f97b7-1e60-12aa-854a-6568b980e4f1"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -14,9 +14,10 @@
 	"events": [],
 	"variables": [],
 	"auth": null,
+	"hasRequests": true,
 	"requests": [
 		{
-			"id": "0bad23bd-1d2c-1838-d358-2a3c304186eb",
+			"id": "215f97b7-1e60-12aa-854a-6568b980e4f1",
 			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
 			"headerData": [
 				{
@@ -32,54 +33,25 @@
 					"enabled": true
 				}
 			],
-			"url": "localhost:8080/api/notifications/v1/student?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+			"url": "localhost:8080/api/notifications/v1/teacher?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100&limit=10&boundary=",
 			"queryParams": [
 				{
 					"key": "classId",
 					"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
 					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"events": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": [],
-			"dataMode": "raw",
-			"auth": null,
-			"time": 1533119200631,
-			"name": "Notifications Student Fetch",
-			"description": "",
-			"collectionId": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
-			"responses": [],
-			"currentHelper": null,
-			"helperAttributes": null,
-			"rawModeData": ""
-		},
-		{
-			"id": "14f18164-1cac-25ce-9799-212fee02e71b",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
 					"description": "",
 					"enabled": true
 				},
 				{
-					"key": "Content-Type",
-					"value": "application/json",
+					"key": "limit",
+					"value": "10",
+					"equals": true,
 					"description": "",
 					"enabled": true
-				}
-			],
-			"url": "localhost:8080/api/notifications/v1/teacher?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100",
-			"queryParams": [
+				},
 				{
-					"key": "classId",
-					"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+					"key": "boundary",
+					"value": "",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -92,14 +64,164 @@
 			"data": [],
 			"dataMode": "raw",
 			"auth": null,
-			"time": 1533119178887,
+			"time": 1533213597852,
 			"name": "Notifications Teacher Fetch",
 			"description": "",
-			"collectionId": "3fe4faa6-92a9-c7f0-4d41-ef22015b414f",
-			"responses": [],
+			"collectionId": "a8bcf152-71b6-dce4-e31e-e06d25b9aa38",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 135,
+					"headers": [
+						{
+							"key": "Content-Length",
+							"value": "5466",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"notifications\":[{\"id\":14,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"7479bfbc-589c-4e2b-80d6-c76a15bdf779\",\"ctxCollectionId\":\"bcc4665a-4412-428b-9735-e1a96de01930\",\"currentItemId\":\"bcc4665a-4412-428b-9735-e1a96de01930\",\"currentItemType\":\"collection\",\"currentItemTitle\":\"COLLECTION-1505214925-1\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":24,\"updatedAt\":1543516200000},{\"id\":15,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"7479bfbc-589c-4e2b-80d6-c76a15bdf779\",\"ctxCollectionId\":\"be23a06d-1678-4d7d-a040-ffbefdadeeb2\",\"currentItemId\":\"be23a06d-1678-4d7d-a040-ffbefdadeeb2\",\"currentItemType\":\"assessment\",\"currentItemTitle\":\"ASSESSMENT-1505214925-2\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":12,\"updatedAt\":1543343400000},{\"id\":3,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"bfb886d0-2755-4007-983a-710470af8581\",\"ctxLessonId\":\"8679e792-ed83-4c20-a504-ddc40952db12\",\"ctxCollectionId\":\"22c48c68-f0bc-4fd1-af26-59a9910f43c7\",\"currentItemId\":\"22c48c68-f0bc-4fd1-af26-59a9910f43c7\",\"currentItemType\":\"assessment\",\"currentItemTitle\":\"ASSESSMENT-1505214925-3\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":13,\"updatedAt\":1542997800000},{\"id\":4,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"a8548fc3-bb1d-40d4-b52c-0b76211dad10\",\"ctxCollectionId\":\"53426597-e8ce-4682-b971-660b387cd81e\",\"currentItemId\":\"53426597-e8ce-4682-b971-660b387cd81e\",\"currentItemType\":\"assessment\",\"currentItemTitle\":\"ASSESSMENT-1505214925-2\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":13,\"updatedAt\":1541701800000},{\"id\":2,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"a8548fc3-bb1d-40d4-b52c-0b76211dad10\",\"ctxCollectionId\":\"834b93c6-499f-4c57-93dd-2aba0d6471ae\",\"currentItemId\":\"834b93c6-499f-4c57-93dd-2aba0d6471ae\",\"currentItemType\":\"collection\",\"currentItemTitle\":\"COLLECTION-1505214925-1\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":16,\"updatedAt\":1541097000000},{\"id\":16,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"7479bfbc-589c-4e2b-80d6-c76a15bdf779\",\"ctxCollectionId\":\"b473134b-7d59-4adb-97a3-da5ea925d5a2\",\"currentItemId\":\"b473134b-7d59-4adb-97a3-da5ea925d5a2\",\"currentItemType\":\"assessment\",\"currentItemTitle\":\"ASSESSMENT-1505214925-3\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":20,\"updatedAt\":1540319400000},{\"id\":9,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"bfb886d0-2755-4007-983a-710470af8581\",\"ctxLessonId\":\"e64d98ec-8793-469e-940b-90761a605e0d\",\"ctxCollectionId\":\"8a1f4ccd-5d6d-480c-acca-2e9f2ddabab3\",\"currentItemId\":\"8a1f4ccd-5d6d-480c-acca-2e9f2ddabab3\",\"currentItemType\":\"assessment\",\"currentItemTitle\":\"ASSESSMENT-1505214925-2\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":11,\"updatedAt\":1540146600000},{\"id\":10,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"bfb886d0-2755-4007-983a-710470af8581\",\"ctxLessonId\":\"8679e792-ed83-4c20-a504-ddc40952db12\",\"ctxCollectionId\":\"eb5442a6-e16e-401a-b784-20e9d52140e7\",\"currentItemId\":\"eb5442a6-e16e-401a-b784-20e9d52140e7\",\"currentItemType\":\"collection\",\"currentItemTitle\":\"COLLECTION-1505214925-0\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":14,\"updatedAt\":1540060200000},{\"id\":7,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"bfb886d0-2755-4007-983a-710470af8581\",\"ctxLessonId\":\"e64d98ec-8793-469e-940b-90761a605e0d\",\"ctxCollectionId\":\"bd4051e8-796b-4200-81f2-08900296e6e2\",\"currentItemId\":\"bd4051e8-796b-4200-81f2-08900296e6e2\",\"currentItemType\":\"collection\",\"currentItemTitle\":\"COLLECTION-1505214925-0\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":14,\"updatedAt\":1539369000000},{\"id\":13,\"ctxClassId\":\"0baefeb6-4f72-49b4-85fd-a20aa4f17100\",\"ctxClassCode\":\"CCODE1\",\"ctxCourseId\":\"c3c5a610-0c97-4ecc-852c-8586a7ba3b52\",\"ctxUnitId\":\"c7ed7287-e114-4a7b-9381-6af4513284d7\",\"ctxLessonId\":\"7479bfbc-589c-4e2b-80d6-c76a15bdf779\",\"ctxCollectionId\":\"ecbef8e0-c653-43b0-aca9-1ac8322c205f\",\"currentItemId\":\"ecbef8e0-c653-43b0-aca9-1ac8322c205f\",\"currentItemType\":\"collection\",\"currentItemTitle\":\"COLLECTION-1505214925-0\",\"notificationType\":\"grading.pending\",\"ctxPathId\":0,\"ctxPathType\":null,\"occurrence\":20,\"updatedAt\":1539023400000}],\"boundary\":1539023400}",
+					"language": "json",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"code": 200,
+					"responseSize": {
+						"body": 5466,
+						"header": 73,
+						"total": 5539
+					},
+					"mimeType": "text",
+					"fileName": "response.json",
+					"dataURI": "data:application/json;base64, eyJub3RpZmljYXRpb25zIjpbeyJpZCI6MTQsImN0eENsYXNzSWQiOiIwYmFlZmViNi00ZjcyLTQ5YjQtODVmZC1hMjBhYTRmMTcxMDAiLCJjdHhDbGFzc0NvZGUiOiJDQ09ERTEiLCJjdHhDb3Vyc2VJZCI6ImMzYzVhNjEwLTBjOTctNGVjYy04NTJjLTg1ODZhN2JhM2I1MiIsImN0eFVuaXRJZCI6ImM3ZWQ3Mjg3LWUxMTQtNGE3Yi05MzgxLTZhZjQ1MTMyODRkNyIsImN0eExlc3NvbklkIjoiNzQ3OWJmYmMtNTg5Yy00ZTJiLTgwZDYtYzc2YTE1YmRmNzc5IiwiY3R4Q29sbGVjdGlvbklkIjoiYmNjNDY2NWEtNDQxMi00MjhiLTk3MzUtZTFhOTZkZTAxOTMwIiwiY3VycmVudEl0ZW1JZCI6ImJjYzQ2NjVhLTQ0MTItNDI4Yi05NzM1LWUxYTk2ZGUwMTkzMCIsImN1cnJlbnRJdGVtVHlwZSI6ImNvbGxlY3Rpb24iLCJjdXJyZW50SXRlbVRpdGxlIjoiQ09MTEVDVElPTi0xNTA1MjE0OTI1LTEiLCJub3RpZmljYXRpb25UeXBlIjoiZ3JhZGluZy5wZW5kaW5nIiwiY3R4UGF0aElkIjowLCJjdHhQYXRoVHlwZSI6bnVsbCwib2NjdXJyZW5jZSI6MjQsInVwZGF0ZWRBdCI6MTU0MzUxNjIwMDAwMH0seyJpZCI6MTUsImN0eENsYXNzSWQiOiIwYmFlZmViNi00ZjcyLTQ5YjQtODVmZC1hMjBhYTRmMTcxMDAiLCJjdHhDbGFzc0NvZGUiOiJDQ09ERTEiLCJjdHhDb3Vyc2VJZCI6ImMzYzVhNjEwLTBjOTctNGVjYy04NTJjLTg1ODZhN2JhM2I1MiIsImN0eFVuaXRJZCI6ImM3ZWQ3Mjg3LWUxMTQtNGE3Yi05MzgxLTZhZjQ1MTMyODRkNyIsImN0eExlc3NvbklkIjoiNzQ3OWJmYmMtNTg5Yy00ZTJiLTgwZDYtYzc2YTE1YmRmNzc5IiwiY3R4Q29sbGVjdGlvbklkIjoiYmUyM2EwNmQtMTY3OC00ZDdkLWEwNDAtZmZiZWZkYWRlZWIyIiwiY3VycmVudEl0ZW1JZCI6ImJlMjNhMDZkLTE2NzgtNGQ3ZC1hMDQwLWZmYmVmZGFkZWViMiIsImN1cnJlbnRJdGVtVHlwZSI6ImFzc2Vzc21lbnQiLCJjdXJyZW50SXRlbVRpdGxlIjoiQVNTRVNTTUVOVC0xNTA1MjE0OTI1LTIiLCJub3RpZmljYXRpb25UeXBlIjoiZ3JhZGluZy5wZW5kaW5nIiwiY3R4UGF0aElkIjowLCJjdHhQYXRoVHlwZSI6bnVsbCwib2NjdXJyZW5jZSI6MTIsInVwZGF0ZWRBdCI6MTU0MzM0MzQwMDAwMH0seyJpZCI6MywiY3R4Q2xhc3NJZCI6IjBiYWVmZWI2LTRmNzItNDliNC04NWZkLWEyMGFhNGYxNzEwMCIsImN0eENsYXNzQ29kZSI6IkNDT0RFMSIsImN0eENvdXJzZUlkIjoiYzNjNWE2MTAtMGM5Ny00ZWNjLTg1MmMtODU4NmE3YmEzYjUyIiwiY3R4VW5pdElkIjoiYmZiODg2ZDAtMjc1NS00MDA3LTk4M2EtNzEwNDcwYWY4NTgxIiwiY3R4TGVzc29uSWQiOiI4Njc5ZTc5Mi1lZDgzLTRjMjAtYTUwNC1kZGM0MDk1MmRiMTIiLCJjdHhDb2xsZWN0aW9uSWQiOiIyMmM0OGM2OC1mMGJjLTRmZDEtYWYyNi01OWE5OTEwZjQzYzciLCJjdXJyZW50SXRlbUlkIjoiMjJjNDhjNjgtZjBiYy00ZmQxLWFmMjYtNTlhOTkxMGY0M2M3IiwiY3VycmVudEl0ZW1UeXBlIjoiYXNzZXNzbWVudCIsImN1cnJlbnRJdGVtVGl0bGUiOiJBU1NFU1NNRU5ULTE1MDUyMTQ5MjUtMyIsIm5vdGlmaWNhdGlvblR5cGUiOiJncmFkaW5nLnBlbmRpbmciLCJjdHhQYXRoSWQiOjAsImN0eFBhdGhUeXBlIjpudWxsLCJvY2N1cnJlbmNlIjoxMywidXBkYXRlZEF0IjoxNTQyOTk3ODAwMDAwfSx7ImlkIjo0LCJjdHhDbGFzc0lkIjoiMGJhZWZlYjYtNGY3Mi00OWI0LTg1ZmQtYTIwYWE0ZjE3MTAwIiwiY3R4Q2xhc3NDb2RlIjoiQ0NPREUxIiwiY3R4Q291cnNlSWQiOiJjM2M1YTYxMC0wYzk3LTRlY2MtODUyYy04NTg2YTdiYTNiNTIiLCJjdHhVbml0SWQiOiJjN2VkNzI4Ny1lMTE0LTRhN2ItOTM4MS02YWY0NTEzMjg0ZDciLCJjdHhMZXNzb25JZCI6ImE4NTQ4ZmMzLWJiMWQtNDBkNC1iNTJjLTBiNzYyMTFkYWQxMCIsImN0eENvbGxlY3Rpb25JZCI6IjUzNDI2NTk3LWU4Y2UtNDY4Mi1iOTcxLTY2MGIzODdjZDgxZSIsImN1cnJlbnRJdGVtSWQiOiI1MzQyNjU5Ny1lOGNlLTQ2ODItYjk3MS02NjBiMzg3Y2Q4MWUiLCJjdXJyZW50SXRlbVR5cGUiOiJhc3Nlc3NtZW50IiwiY3VycmVudEl0ZW1UaXRsZSI6IkFTU0VTU01FTlQtMTUwNTIxNDkyNS0yIiwibm90aWZpY2F0aW9uVHlwZSI6ImdyYWRpbmcucGVuZGluZyIsImN0eFBhdGhJZCI6MCwiY3R4UGF0aFR5cGUiOm51bGwsIm9jY3VycmVuY2UiOjEzLCJ1cGRhdGVkQXQiOjE1NDE3MDE4MDAwMDB9LHsiaWQiOjIsImN0eENsYXNzSWQiOiIwYmFlZmViNi00ZjcyLTQ5YjQtODVmZC1hMjBhYTRmMTcxMDAiLCJjdHhDbGFzc0NvZGUiOiJDQ09ERTEiLCJjdHhDb3Vyc2VJZCI6ImMzYzVhNjEwLTBjOTctNGVjYy04NTJjLTg1ODZhN2JhM2I1MiIsImN0eFVuaXRJZCI6ImM3ZWQ3Mjg3LWUxMTQtNGE3Yi05MzgxLTZhZjQ1MTMyODRkNyIsImN0eExlc3NvbklkIjoiYTg1NDhmYzMtYmIxZC00MGQ0LWI1MmMtMGI3NjIxMWRhZDEwIiwiY3R4Q29sbGVjdGlvbklkIjoiODM0YjkzYzYtNDk5Zi00YzU3LTkzZGQtMmFiYTBkNjQ3MWFlIiwiY3VycmVudEl0ZW1JZCI6IjgzNGI5M2M2LTQ5OWYtNGM1Ny05M2RkLTJhYmEwZDY0NzFhZSIsImN1cnJlbnRJdGVtVHlwZSI6ImNvbGxlY3Rpb24iLCJjdXJyZW50SXRlbVRpdGxlIjoiQ09MTEVDVElPTi0xNTA1MjE0OTI1LTEiLCJub3RpZmljYXRpb25UeXBlIjoiZ3JhZGluZy5wZW5kaW5nIiwiY3R4UGF0aElkIjowLCJjdHhQYXRoVHlwZSI6bnVsbCwib2NjdXJyZW5jZSI6MTYsInVwZGF0ZWRBdCI6MTU0MTA5NzAwMDAwMH0seyJpZCI6MTYsImN0eENsYXNzSWQiOiIwYmFlZmViNi00ZjcyLTQ5YjQtODVmZC1hMjBhYTRmMTcxMDAiLCJjdHhDbGFzc0NvZGUiOiJDQ09ERTEiLCJjdHhDb3Vyc2VJZCI6ImMzYzVhNjEwLTBjOTctNGVjYy04NTJjLTg1ODZhN2JhM2I1MiIsImN0eFVuaXRJZCI6ImM3ZWQ3Mjg3LWUxMTQtNGE3Yi05MzgxLTZhZjQ1MTMyODRkNyIsImN0eExlc3NvbklkIjoiNzQ3OWJmYmMtNTg5Yy00ZTJiLTgwZDYtYzc2YTE1YmRmNzc5IiwiY3R4Q29sbGVjdGlvbklkIjoiYjQ3MzEzNGItN2Q1OS00YWRiLTk3YTMtZGE1ZWE5MjVkNWEyIiwiY3VycmVudEl0ZW1JZCI6ImI0NzMxMzRiLTdkNTktNGFkYi05N2EzLWRhNWVhOTI1ZDVhMiIsImN1cnJlbnRJdGVtVHlwZSI6ImFzc2Vzc21lbnQiLCJjdXJyZW50SXRlbVRpdGxlIjoiQVNTRVNTTUVOVC0xNTA1MjE0OTI1LTMiLCJub3RpZmljYXRpb25UeXBlIjoiZ3JhZGluZy5wZW5kaW5nIiwiY3R4UGF0aElkIjowLCJjdHhQYXRoVHlwZSI6bnVsbCwib2NjdXJyZW5jZSI6MjAsInVwZGF0ZWRBdCI6MTU0MDMxOTQwMDAwMH0seyJpZCI6OSwiY3R4Q2xhc3NJZCI6IjBiYWVmZWI2LTRmNzItNDliNC04NWZkLWEyMGFhNGYxNzEwMCIsImN0eENsYXNzQ29kZSI6IkNDT0RFMSIsImN0eENvdXJzZUlkIjoiYzNjNWE2MTAtMGM5Ny00ZWNjLTg1MmMtODU4NmE3YmEzYjUyIiwiY3R4VW5pdElkIjoiYmZiODg2ZDAtMjc1NS00MDA3LTk4M2EtNzEwNDcwYWY4NTgxIiwiY3R4TGVzc29uSWQiOiJlNjRkOThlYy04NzkzLTQ2OWUtOTQwYi05MDc2MWE2MDVlMGQiLCJjdHhDb2xsZWN0aW9uSWQiOiI4YTFmNGNjZC01ZDZkLTQ4MGMtYWNjYS0yZTlmMmRkYWJhYjMiLCJjdXJyZW50SXRlbUlkIjoiOGExZjRjY2QtNWQ2ZC00ODBjLWFjY2EtMmU5ZjJkZGFiYWIzIiwiY3VycmVudEl0ZW1UeXBlIjoiYXNzZXNzbWVudCIsImN1cnJlbnRJdGVtVGl0bGUiOiJBU1NFU1NNRU5ULTE1MDUyMTQ5MjUtMiIsIm5vdGlmaWNhdGlvblR5cGUiOiJncmFkaW5nLnBlbmRpbmciLCJjdHhQYXRoSWQiOjAsImN0eFBhdGhUeXBlIjpudWxsLCJvY2N1cnJlbmNlIjoxMSwidXBkYXRlZEF0IjoxNTQwMTQ2NjAwMDAwfSx7ImlkIjoxMCwiY3R4Q2xhc3NJZCI6IjBiYWVmZWI2LTRmNzItNDliNC04NWZkLWEyMGFhNGYxNzEwMCIsImN0eENsYXNzQ29kZSI6IkNDT0RFMSIsImN0eENvdXJzZUlkIjoiYzNjNWE2MTAtMGM5Ny00ZWNjLTg1MmMtODU4NmE3YmEzYjUyIiwiY3R4VW5pdElkIjoiYmZiODg2ZDAtMjc1NS00MDA3LTk4M2EtNzEwNDcwYWY4NTgxIiwiY3R4TGVzc29uSWQiOiI4Njc5ZTc5Mi1lZDgzLTRjMjAtYTUwNC1kZGM0MDk1MmRiMTIiLCJjdHhDb2xsZWN0aW9uSWQiOiJlYjU0NDJhNi1lMTZlLTQwMWEtYjc4NC0yMGU5ZDUyMTQwZTciLCJjdXJyZW50SXRlbUlkIjoiZWI1NDQyYTYtZTE2ZS00MDFhLWI3ODQtMjBlOWQ1MjE0MGU3IiwiY3VycmVudEl0ZW1UeXBlIjoiY29sbGVjdGlvbiIsImN1cnJlbnRJdGVtVGl0bGUiOiJDT0xMRUNUSU9OLTE1MDUyMTQ5MjUtMCIsIm5vdGlmaWNhdGlvblR5cGUiOiJncmFkaW5nLnBlbmRpbmciLCJjdHhQYXRoSWQiOjAsImN0eFBhdGhUeXBlIjpudWxsLCJvY2N1cnJlbmNlIjoxNCwidXBkYXRlZEF0IjoxNTQwMDYwMjAwMDAwfSx7ImlkIjo3LCJjdHhDbGFzc0lkIjoiMGJhZWZlYjYtNGY3Mi00OWI0LTg1ZmQtYTIwYWE0ZjE3MTAwIiwiY3R4Q2xhc3NDb2RlIjoiQ0NPREUxIiwiY3R4Q291cnNlSWQiOiJjM2M1YTYxMC0wYzk3LTRlY2MtODUyYy04NTg2YTdiYTNiNTIiLCJjdHhVbml0SWQiOiJiZmI4ODZkMC0yNzU1LTQwMDctOTgzYS03MTA0NzBhZjg1ODEiLCJjdHhMZXNzb25JZCI6ImU2NGQ5OGVjLTg3OTMtNDY5ZS05NDBiLTkwNzYxYTYwNWUwZCIsImN0eENvbGxlY3Rpb25JZCI6ImJkNDA1MWU4LTc5NmItNDIwMC04MWYyLTA4OTAwMjk2ZTZlMiIsImN1cnJlbnRJdGVtSWQiOiJiZDQwNTFlOC03OTZiLTQyMDAtODFmMi0wODkwMDI5NmU2ZTIiLCJjdXJyZW50SXRlbVR5cGUiOiJjb2xsZWN0aW9uIiwiY3VycmVudEl0ZW1UaXRsZSI6IkNPTExFQ1RJT04tMTUwNTIxNDkyNS0wIiwibm90aWZpY2F0aW9uVHlwZSI6ImdyYWRpbmcucGVuZGluZyIsImN0eFBhdGhJZCI6MCwiY3R4UGF0aFR5cGUiOm51bGwsIm9jY3VycmVuY2UiOjE0LCJ1cGRhdGVkQXQiOjE1MzkzNjkwMDAwMDB9LHsiaWQiOjEzLCJjdHhDbGFzc0lkIjoiMGJhZWZlYjYtNGY3Mi00OWI0LTg1ZmQtYTIwYWE0ZjE3MTAwIiwiY3R4Q2xhc3NDb2RlIjoiQ0NPREUxIiwiY3R4Q291cnNlSWQiOiJjM2M1YTYxMC0wYzk3LTRlY2MtODUyYy04NTg2YTdiYTNiNTIiLCJjdHhVbml0SWQiOiJjN2VkNzI4Ny1lMTE0LTRhN2ItOTM4MS02YWY0NTEzMjg0ZDciLCJjdHhMZXNzb25JZCI6Ijc0NzliZmJjLTU4OWMtNGUyYi04MGQ2LWM3NmExNWJkZjc3OSIsImN0eENvbGxlY3Rpb25JZCI6ImVjYmVmOGUwLWM2NTMtNDNiMC1hY2E5LTFhYzgzMjJjMjA1ZiIsImN1cnJlbnRJdGVtSWQiOiJlY2JlZjhlMC1jNjUzLTQzYjAtYWNhOS0xYWM4MzIyYzIwNWYiLCJjdXJyZW50SXRlbVR5cGUiOiJjb2xsZWN0aW9uIiwiY3VycmVudEl0ZW1UaXRsZSI6IkNPTExFQ1RJT04tMTUwNTIxNDkyNS0wIiwibm90aWZpY2F0aW9uVHlwZSI6ImdyYWRpbmcucGVuZGluZyIsImN0eFBhdGhJZCI6MCwiY3R4UGF0aFR5cGUiOm51bGwsIm9jY3VycmVuY2UiOjIwLCJ1cGRhdGVkQXQiOjE1MzkwMjM0MDAwMDB9XSwiYm91bmRhcnkiOjE1MzkwMjM0MDB9",
+					"name": "Notifications Teacher Fetch",
+					"id": "6e235f31-d03f-4b41-9cf5-0ae601e74f30",
+					"request": {
+						"url": "localhost:8080/api/notifications/v1/teacher?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100&limit=10&boundary=",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [
+							{
+								"key": "classId",
+								"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+								"equals": true,
+								"description": "",
+								"enabled": true
+							},
+							{
+								"key": "limit",
+								"value": "10",
+								"equals": true,
+								"description": "",
+								"enabled": true
+							},
+							{
+								"key": "boundary",
+								"value": "",
+								"equals": true,
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headerData": [
+							{
+								"key": "Authorization",
+								"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+								"description": "",
+								"enabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
+						"data": "",
+						"method": "GET",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "",
+			"collection_id": "a8bcf152-71b6-dce4-e31e-e06d25b9aa38",
 			"currentHelper": null,
-			"helperAttributes": null,
-			"rawModeData": ""
+			"helperAttributes": null
+		},
+		{
+			"id": "36b04f9b-d71c-94cd-f354-a5a5b491b7e1",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/api/notifications/v1/student?classId=0baefeb6-4f72-49b4-85fd-a20aa4f17100&limit=10&boundary=",
+			"queryParams": [
+				{
+					"key": "classId",
+					"value": "0baefeb6-4f72-49b4-85fd-a20aa4f17100",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "limit",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "boundary",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1533213628204,
+			"name": "Notifications Student Fetch",
+			"description": "",
+			"collectionId": "a8bcf152-71b6-dce4-e31e-e06d25b9aa38",
+			"responses": [],
+			"rawModeData": "",
+			"collection_id": "a8bcf152-71b6-dce4-e31e-e06d25b9aa38",
+			"currentHelper": null,
+			"helperAttributes": null
 		}
 	]
 }

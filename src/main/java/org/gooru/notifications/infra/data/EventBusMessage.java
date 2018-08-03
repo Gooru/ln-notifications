@@ -53,7 +53,7 @@ public final class EventBusMessage {
 
     public static EventBusMessage eventBusMessageBuilderForNonAuthenticatedInternalRequests(
         Message<JsonObject> message) {
-        String userId = Constants.Misc.USER_PLACEHOLDER;
+        String userId = Constants.Misc.USER_PLACEHOLDER.toString();
         JsonObject requestBody = message.body().getJsonObject(Constants.Message.MSG_HTTP_BODY);
 
         return new EventBusMessage(null, requestBody, UUID.fromString(userId), new JsonObject(), false);

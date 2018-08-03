@@ -76,8 +76,8 @@ public final class Constants {
 
     public static final class Misc {
 
-        public static final String COMPETENCY_PLACEHOLDER = new UUID(0, 0).toString();
-        public static final String USER_PLACEHOLDER = new UUID(0, 0).toString();
+        public static final UUID CLASS_PLACEHOLDER = new UUID(0, 0);
+        public static final UUID USER_PLACEHOLDER = new UUID(0, 0);
 
         private Misc() {
             throw new AssertionError();

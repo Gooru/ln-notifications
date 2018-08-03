@@ -44,6 +44,8 @@
     }
   },
   "app.configuration": {
+    "limit.default": 10,
+    "limit.max": 25,
     "context.mbus.timeout.seconds": 60
   },
   "vertxOptions": {

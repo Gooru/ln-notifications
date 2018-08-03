@@ -5,6 +5,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 import org.gooru.notifications.infra.data.EventBusMessage;
+import org.gooru.notifications.infra.jdbi.DBICreator;
 import org.gooru.notifications.processors.AsyncMessageProcessor;
 import org.gooru.notifications.responses.MessageResponse;
 import org.gooru.notifications.responses.MessageResponseFactory;
@@ -21,8 +22,8 @@ public class FetchTeacherNotificationsProcessor implements AsyncMessageProcessor
     private static final Logger LOGGER = LoggerFactory.getLogger(FetchTeacherNotificationsProcessor.class);
     private final Future<MessageResponse> result;
     private EventBusMessage eventBusMessage;
-    //    private FetchTeacherNotificationsService fetchTeacherNotificationsService =
-    //        new FetchTeacherNotificationsService(DBICreator.getDbiForDefaultDS());
+    private FetchTeacherNotificationsService fetchTeacherNotificationsService =
+        new FetchTeacherNotificationsService(DBICreator.getDbiForDefaultDS());
 
     public FetchTeacherNotificationsProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;
@@ -36,11 +37,10 @@ public class FetchTeacherNotificationsProcessor implements AsyncMessageProcessor
             try {
                 this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
 
-                //                FetchTeacherNotificationsCommand command = FetchTeacherNotificationsCommand.builder
-                // (eventBusMessage);
-                //                FetchTeacherNotificationsResponse route0Content =
-                //                    fetchTeacherNotificationsService.fetchRoute0Content(command);
-                future.complete(createResponse(new JsonObject().put("message", "Teacher notifications")));
+                FetchTeacherNotificationsCommand command = FetchTeacherNotificationsCommand.builder(eventBusMessage);
+                FetchTeacherNotificationsResponse response = fetchTeacherNotificationsService.fetch(command);
+                JsonObject jsonResponse = JsonObject.mapFrom(response);
+                future.complete(createResponse(jsonResponse));
             } catch (Throwable throwable) {
                 LOGGER.warn("Encountered exception", throwable);
                 future.fail(throwable);

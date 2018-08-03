@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
  */
 public final class AppConfiguration implements Initializer {
     private static final String APP_CONFIG_KEY = "app.configuration";
+    public static final String LIMIT_MAX = "limit.max";
+    public static final String LIMIT_DEFAULT = "limit.default";
     private JsonObject configuration;
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfiguration.class);
 
@@ -37,6 +39,14 @@ public final class AppConfiguration implements Initializer {
                 }
             }
         }
+    }
+
+    public int getDefaultLimit() {
+        return configuration.getInteger(LIMIT_DEFAULT);
+    }
+
+    public int getMaxLimit() {
+        return configuration.getInteger(LIMIT_MAX);
     }
 
     public int getConfigAsInt(String key) {
