@@ -8,6 +8,7 @@ import org.gooru.notifications.infra.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -48,6 +49,16 @@ class FetchStudentNotificationsCommand {
     public boolean applicableForAllClasses() {
         return classId.equals(Constants.Misc.CLASS_PLACEHOLDER);
     }
+
+    FetchStudentNotificationCommandBean asBean() {
+        FetchStudentNotificationCommandBean result = new FetchStudentNotificationCommandBean();
+        result.setUserId(userId);
+        result.setLimit(limit);
+        result.setClassId(classId);
+        result.setBoundary(boundary);
+        return result;
+    }
+
 
     static FetchStudentNotificationsCommand builder(EventBusMessage input) {
         UUID userId = input.getUserId();
@@ -112,9 +123,57 @@ class FetchStudentNotificationsCommand {
                 LOGGER.warn("Invalid number for boundary", e);
                 throw new IllegalArgumentException("Invalid number for boundary");
             }
+        } else {
+            boundary = new Date().getTime();
         }
         return boundary;
     }
+
+    @Override
+    public String toString() {
+        return "FetchStudentNotificationsCommand{" + "userId=" + userId + ", classId=" + classId + ", boundary=" +
+                   boundary + ", limit=" + limit + '}';
+    }
+
+    public static class FetchStudentNotificationCommandBean {
+        private UUID userId;
+        private UUID classId;
+        private Long boundary;
+        private int limit;
+
+        public UUID getUserId() {
+            return userId;
+        }
+
+        public void setUserId(UUID userId) {
+            this.userId = userId;
+        }
+
+        public UUID getClassId() {
+            return classId;
+        }
+
+        public void setClassId(UUID classId) {
+            this.classId = classId;
+        }
+
+        public Long getBoundary() {
+            return boundary;
+        }
+
+        public void setBoundary(Long boundary) {
+            this.boundary = boundary;
+        }
+
+        public int getLimit() {
+            return limit;
+        }
+
+        public void setLimit(int limit) {
+            this.limit = limit;
+        }
+    }
+
 
     static final class CommandAttributes {
         static final String CLASS_ID = "classId";
