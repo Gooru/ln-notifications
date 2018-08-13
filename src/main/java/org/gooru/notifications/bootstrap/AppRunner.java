@@ -7,10 +7,8 @@ import ch.qos.logback.core.util.StatusPrinter;
 import io.vertx.core.*;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
-import org.gooru.notifications.infra.components.Finalizer;
-import org.gooru.notifications.infra.components.Finalizers;
-import org.gooru.notifications.infra.components.Initializer;
-import org.gooru.notifications.infra.components.Initializers;
+import org.gooru.notifications.infra.components.*;
+import org.gooru.notifications.infra.kafka.ConsumersDeployer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,6 +120,9 @@ public class AppRunner {
             for (Initializer initializer : initializers) {
                 initializer.initializeComponent(this.vertx, conf);
             }
+            new ConsumersDeployer(AppConfiguration.getInstance().fetchConsumersToDeploy(),
+                AppConfiguration.getInstance().fetchConsumerConfigForDeployment()).deploy();
+
             future.complete();
         }, ar -> {
             if (ar.succeeded()) {

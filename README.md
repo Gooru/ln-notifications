@@ -19,3 +19,41 @@ To run the binary which would be fat jar:
 
     java -jar notifications.jar src/main/resources/notifications.json
 
+### Event Structure
+Following notification types are supported:
+
+#### For student
+- teacher.override
+- teacher.suggestion
+- teacher.grading.complete
+
+#### For teacher
+- student.self.report
+- student.gradable.submission
+
+The event is a Json packet which contains following fields:
+
+
+<pre>
+{
+    "notificationType": "one-of-type-names-defined-above",
+    "userId": "uuid-of-user",
+    "classId": "uuid-of-class-where-applicable",
+    "courseId": "uuid-of-course-mandatory",
+    "unitId": "uuid-of-unit-mandatory",
+    "lessonId": "uuid-of-lesson-mandatory",
+    "collectionId": "uuid-of-collection-mandatory",
+    "currentItemId": "uuid-of-current-item-on-main-path-same-as-collection",
+    "currentItemType": "type-of-current-item-coll/asmt/asmt-ext/coll-ext",
+    "pathId": "id-of-path-if-not-on-main-path-BigInt-type-else-null",
+    "pathType": "one-of-system/teacher/route0-mandatory-if-pathid-is-present"
+}
+</pre>
+
+### Pending task items
+- Create master table for notifications
+- Modify existing tables to have a foreign key to master table
+    - Master table to have string primary keys to avoid joins while reading data
+- Create new APIs
+    - List all supported notifications
+    - Allow delete of notifications only where the notifications

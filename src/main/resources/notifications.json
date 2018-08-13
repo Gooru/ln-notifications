@@ -43,6 +43,27 @@
       }
     }
   },
+  "consumers.deploy": [
+    "org.gooru.notifications.writers.NotificationsConsumer"
+  ],
+  "consumers.config": {
+    "org.gooru.notifications.writers.NotificationsConsumer": {
+      "kafka.consumer.config": {
+        "instances": 1,
+        "props": {
+          "bootstrap.servers": "localhost:9092",
+          "session.timeout.ms": 120000,
+          "group.id": "notification-consumer-group-1",
+          "max.poll.records": 5,
+          "max.poll.interval.ms": 30000,
+          "enable.auto.commit": false
+        },
+        "consumer.topics": [
+          "org.gooru.notifications.writers.topic"
+        ]
+      }
+    }
+  },
   "app.configuration": {
     "limit.default": 10,
     "limit.max": 25,
