@@ -18,7 +18,7 @@ public final class AppConfiguration implements Initializer {
     private static final String LIMIT_DEFAULT = "limit.default";
     private static final String CONSUMERS_CONFIG = "consumers.config";
     private static final String CONSUMERS_DEPLOY = "consumers.deploy";
-    public static final String PATHID_HACK_ENABLED = "pathid.hack.enabled";
+    private static final String PATHID_HACK_ENABLED = "pathid.hack.enabled";
     private JsonObject configuration;
     private JsonNode globalConfiguration;
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfiguration.class);
