@@ -20,6 +20,35 @@ public final class UuidUtils {
         return convertStringToUuid(value);
     }
 
+    public static boolean validateUuidAllowNull(String uuidString) {
+        if (uuidString != null) {
+            if (uuidString.length() != VALID_UUID_LEN) {
+                return false;
+            }
+            try {
+                UUID.fromString(uuidString);
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean validateUuid(String uuidString) {
+        if (uuidString != null) {
+            if (uuidString.length() != VALID_UUID_LEN) {
+                return false;
+            }
+            try {
+                UUID.fromString(uuidString);
+                return true;
+            } catch (IllegalArgumentException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
     public static UUID convertStringToUuid(String value) {
         if (value == null || value.isEmpty() || value.length() != VALID_UUID_LEN) {
             return null;

@@ -46,14 +46,13 @@ The event is a Json packet which contains following fields:
     "currentItemId": "uuid-of-current-item-on-main-path-same-as-collection",
     "currentItemType": "type-of-current-item-coll/asmt/asmt-ext/coll-ext",
     "pathId": "id-of-path-if-not-on-main-path-BigInt-type-else-null",
+    "action": "initiate/complete",
     "pathType": "one-of-system/teacher/route0-mandatory-if-pathid-is-present"
 }
 </pre>
 
 ### Pending task items
-- Create master table for notifications
-- Modify existing tables to have a foreign key to master table
-    - Master table to have string primary keys to avoid joins while reading data
+- Complete write paths
 - Create new APIs
     - List all supported notifications
     - Allow delete of notifications only where the notifications

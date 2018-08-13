@@ -20,6 +20,24 @@
         </encoder>
     </appender>
 
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>error-notifications.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>error-notifications.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <append>true</append>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.gooru.errors" level="warn" additivity="false">
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
+
     <logger name="org.gooru.notifications" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>

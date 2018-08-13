@@ -6,5 +6,6 @@
 .classpath
 .project
 .out
-
+out
+*.log
 
