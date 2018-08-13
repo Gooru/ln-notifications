@@ -14,10 +14,11 @@ import java.io.IOException;
  */
 public final class AppConfiguration implements Initializer {
     private static final String APP_CONFIG_KEY = "app.configuration";
-    public static final String LIMIT_MAX = "limit.max";
-    public static final String LIMIT_DEFAULT = "limit.default";
-    public static final String CONSUMERS_CONFIG = "consumers.config";
-    public static final String CONSUMERS_DEPLOY = "consumers.deploy";
+    private static final String LIMIT_MAX = "limit.max";
+    private static final String LIMIT_DEFAULT = "limit.default";
+    private static final String CONSUMERS_CONFIG = "consumers.config";
+    private static final String CONSUMERS_DEPLOY = "consumers.deploy";
+    public static final String PATHID_HACK_ENABLED = "pathid.hack.enabled";
     private JsonObject configuration;
     private JsonNode globalConfiguration;
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfiguration.class);
@@ -52,6 +53,10 @@ public final class AppConfiguration implements Initializer {
                 }
             }
         }
+    }
+
+    public boolean isPathIdHackEnabled() {
+        return configuration.getBoolean(PATHID_HACK_ENABLED, false);
     }
 
     public int getDefaultLimit() {
