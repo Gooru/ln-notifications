@@ -87,7 +87,7 @@ create table student_notifications (
     ctx_course_id uuid NOT NULL,
     ctx_unit_id uuid NOT NULL,
     ctx_lesson_id uuid NOT NULL,
-    ctx_collection_id uuid NOT NULL,
+    ctx_collection_id uuid,
     current_item_id uuid NOT NULL,
     current_item_type text NOT NULL CHECK (current_item_type::text = ANY (ARRAY['collection'::text, 'assessment'::text,
         'collection-external'::text, 'assessment-external'::text ])),

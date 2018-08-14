@@ -37,7 +37,6 @@ public class NotificationsConsumer extends ConsumerTemplate<String, String> {
 
     @Override
     public void processRecord(ConsumerRecord<String, String> record) {
-        // TODO: Provide implementation
         try {
             NotificationsConsumerCommand command = NotificationsConsumerCommand.build(record.value());
             NotificationsWriterServiceBuilder.build(command.getNotificationType()).handleNotifications(command);

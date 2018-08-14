@@ -11,7 +11,7 @@ class TeacherOverrideNotificationsWriterService implements NotificationsWriterSe
 
     private final DBI dbi;
 
-    public TeacherOverrideNotificationsWriterService(DBI dbi) {
+    TeacherOverrideNotificationsWriterService(DBI dbi) {
         this.dbi = dbi;
     }
 

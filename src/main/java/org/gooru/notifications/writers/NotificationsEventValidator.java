@@ -71,7 +71,10 @@ final class NotificationsEventValidator {
     }
 
     static final class PathTypeValidator {
-        private static final List<String> VALID_VALUES = Arrays.asList("system", "teacher", "route0");
+        private static final String ROUTE0 = "route0";
+        private static final String SYSTEM = "system";
+        private static final String TEACHER = "teacher";
+        private static final List<String> VALID_VALUES = Arrays.asList(SYSTEM, TEACHER, ROUTE0);
 
         private PathTypeValidator() {
             throw new AssertionError();
@@ -79,6 +82,22 @@ final class NotificationsEventValidator {
 
         static boolean isValid(String value) {
             return (value == null) || (VALID_VALUES.contains(value));
+        }
+
+        static boolean isMainPath(String value) {
+            return value == null;
+        }
+
+        static boolean isSystemPath(String value) {
+            return (value != null && value.equals(SYSTEM));
+        }
+
+        static boolean isTeacherPath(String value) {
+            return (value != null && value.equals(TEACHER));
+        }
+
+        static boolean isRoute0Path(String value) {
+            return (value != null && value.equals(ROUTE0));
         }
     }
 
@@ -96,14 +115,25 @@ final class NotificationsEventValidator {
     }
 
     static final class ActionValidator {
-        private static final List<String> VALID_VALUES = Arrays.asList("initiate", "complete");
+        private static final String INITIATE = "initiate";
+        private static final String COMPLETE = "complete";
+
+        private static final List<String> VALID_VALUES = Arrays.asList(INITIATE, COMPLETE);
 
         private ActionValidator() {
             throw new AssertionError();
         }
 
         static boolean isValid(String value) {
-            return (value == null) || (VALID_VALUES.contains(value));
+            return (value != null) && (VALID_VALUES.contains(value));
+        }
+
+        static boolean isActionInitiate(String value) {
+            return INITIATE.equals(value);
+        }
+
+        static boolean isActionComplete(String value) {
+            return COMPLETE.equals(value);
         }
     }
 

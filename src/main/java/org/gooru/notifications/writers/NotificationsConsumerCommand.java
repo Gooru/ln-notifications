@@ -22,6 +22,7 @@ class NotificationsConsumerCommand {
     private Long pathId;
     private String notificationType;
     private String action;
+    private NotificationsEvent event;
 
     static NotificationsConsumerCommand build(String input) {
         JsonObject json = new JsonObject(input);
@@ -44,7 +45,7 @@ class NotificationsConsumerCommand {
         command.pathType = event.getPathType();
         command.notificationType = event.getNotificationType();
         command.action = event.getAction();
-
+        command.event = event;
         return command;
     }
 
@@ -94,6 +95,34 @@ class NotificationsConsumerCommand {
 
     public String getAction() {
         return action;
+    }
+
+    public NotificationsEvent getEvent() {
+        return event;
+    }
+
+    public boolean isActionComplete() {
+        return NotificationsEventValidator.ActionValidator.isActionComplete(action);
+    }
+
+    public boolean isActionInitiate() {
+        return NotificationsEventValidator.ActionValidator.isActionInitiate(action);
+    }
+
+    public boolean isOnMainPath() {
+        return NotificationsEventValidator.PathTypeValidator.isMainPath(pathType);
+    }
+
+    public boolean isOnSystemPath() {
+        return NotificationsEventValidator.PathTypeValidator.isSystemPath(pathType);
+    }
+
+    public boolean isOnTeacherPath() {
+        return NotificationsEventValidator.PathTypeValidator.isTeacherPath(pathType);
+    }
+
+    public boolean isOnRoute0() {
+        return NotificationsEventValidator.PathTypeValidator.isRoute0Path(pathType);
     }
 
     @Override
