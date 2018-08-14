@@ -1,26 +1,32 @@
 package org.gooru.notifications.writers;
 
+import org.gooru.notifications.infra.utils.UuidUtils;
 import org.skife.jdbi.v2.DBI;
 
+import java.util.UUID;
+
 /**
- * This writer is triggered when teacher assigns a suggestion to student.
+ * This writer is triggered when teacher overrides score for an item for specific student.
  *
- * The notification is initiated from teacher, for specific student from Navigate Next module. Hence, it should be
- * having access to collection as well as current item. Thus this handler won't require a hack to actually read and
- * populate correct context based on path id/type if present.
+ * The notification is initiated from teacher, for specific student from Insights module. Hence, it won't be
+ * having access to collection as well as current item, at least as of now. Hence this writer would need to resort to
+ * hack of populating current context based on path params (id and type).
  *
  * @author ashish.
  */
 
-class TeacherSuggestionNotificationsWriterService implements NotificationsWriterService {
+class TeacherOverrideAndGradingCompleteNotificationsWriterService implements NotificationsWriterService {
+
+
     private final DBI dbi;
     private NotificationsConsumerCommand command;
     private StudentNotificationsModel model;
     private NotificationsWriterDao dao;
 
-    TeacherSuggestionNotificationsWriterService(DBI dbi) {
+    TeacherOverrideAndGradingCompleteNotificationsWriterService(DBI dbi) {
         this.dbi = dbi;
     }
+
 
     @Override
     public void handleNotifications(NotificationsConsumerCommand command) {
@@ -50,7 +56,7 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
         model.setCourseId(command.getCourseId());
         model.setUnitId(command.getUnitId());
         model.setLessonId(command.getLessonId());
-        model.setCollectionId(command.getCollectionId());
+        model.setCollectionId(fetchCollectionId());
         model.setCurrentItemId(command.getCurrentItemId());
         model.setCurrentItemType(command.getCurrentItemType());
         model.setNotificationType(command.getNotificationType());
@@ -58,6 +64,16 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
         model.setPathType(command.getPathType());
         model.setClassCode(fetchClassCode());
         model.setCurrentItemTitle(fetchCurrentItemTitle());
+    }
+
+    private UUID fetchCollectionId() {
+        if (command.isOnMainPath() || command.isOnRoute0()) {
+            return command.getCollectionId();
+        } else {
+            String ctxCollectionId =
+                getDao().fetchCtxCollectionForPath(command.getUserId(), command.getPathId(), command.getPathType());
+            return UuidUtils.convertStringToUuid(ctxCollectionId);
+        }
     }
 
     private String fetchClassCode() {

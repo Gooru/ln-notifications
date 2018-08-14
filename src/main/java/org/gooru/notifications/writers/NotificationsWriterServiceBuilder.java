@@ -16,11 +16,11 @@ final class NotificationsWriterServiceBuilder {
     static NotificationsWriterService build(String notificationType, DBI dbi) {
         switch (notificationType) {
             case "teacher.override":
-                return new TeacherOverrideNotificationsWriterService(dbi);
+                return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
             case "teacher.suggestion":
                 return new TeacherSuggestionNotificationsWriterService(dbi);
             case "teacher.grading.complete":
-                return new TeacherGradingCompleteNotificationsWriterService(dbi);
+                return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
             case "student.self.report":
                 return new StudentSelfReportNotificationsWriterService(dbi);
             case "student.gradable.submission":

@@ -66,4 +66,10 @@ interface NotificationsWriterDao {
                    ":lessonId, :collectionId, :currentItemId, :currentItemType, :currentItemTitle, :notificationType," +
                    " :pathId, :pathType)")
     void persistStudentNotification(@BindBean StudentNotificationsModel model);
+
+    @SqlQuery("select ctx_collection_id from user_navigation_paths where id = :pathId and ctx_user_id = :userId and " +
+                  "suggestion_type = :pathType")
+    String fetchCtxCollectionForPath(@Bind("userId") UUID userId, @Bind("pathId") Long pathId,
+        @Bind("pathType") String pathType);
+
 }
