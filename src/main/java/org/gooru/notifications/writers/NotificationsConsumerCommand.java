@@ -133,4 +133,132 @@ class NotificationsConsumerCommand {
                    ", pathType='" + pathType + '\'' + ", pathId=" + pathId + ", notificationType='" + notificationType +
                    '\'' + ", action='" + action + '\'' + '}';
     }
+
+    public NotificationsConsumerCommandBean asBean() {
+        NotificationsConsumerCommandBean bean = new NotificationsConsumerCommandBean();
+        bean.userId = userId;
+        bean.classId = classId;
+        bean.courseId = courseId;
+        bean.unitId = unitId;
+        bean.lessonId = lessonId;
+        bean.collectionId = collectionId;
+        bean.currentItemId = currentItemId;
+        bean.currentItemType = currentItemType;
+        bean.pathId = pathId;
+        bean.pathType = pathType;
+        bean.notificationType = notificationType;
+        bean.action = action;
+        return bean;
+    }
+
+    public static class NotificationsConsumerCommandBean {
+        private UUID userId;
+        private UUID classId;
+        private UUID courseId;
+        private UUID unitId;
+        private UUID lessonId;
+        private UUID collectionId;
+        private UUID currentItemId;
+        private String currentItemType;
+        private String pathType;
+        private Long pathId;
+        private String notificationType;
+        private String action;
+
+        public UUID getUserId() {
+            return userId;
+        }
+
+        public void setUserId(UUID userId) {
+            this.userId = userId;
+        }
+
+        public UUID getClassId() {
+            return classId;
+        }
+
+        public void setClassId(UUID classId) {
+            this.classId = classId;
+        }
+
+        public UUID getCourseId() {
+            return courseId;
+        }
+
+        public void setCourseId(UUID courseId) {
+            this.courseId = courseId;
+        }
+
+        public UUID getUnitId() {
+            return unitId;
+        }
+
+        public void setUnitId(UUID unitId) {
+            this.unitId = unitId;
+        }
+
+        public UUID getLessonId() {
+            return lessonId;
+        }
+
+        public void setLessonId(UUID lessonId) {
+            this.lessonId = lessonId;
+        }
+
+        public UUID getCollectionId() {
+            return collectionId;
+        }
+
+        public void setCollectionId(UUID collectionId) {
+            this.collectionId = collectionId;
+        }
+
+        public UUID getCurrentItemId() {
+            return currentItemId;
+        }
+
+        public void setCurrentItemId(UUID currentItemId) {
+            this.currentItemId = currentItemId;
+        }
+
+        public String getCurrentItemType() {
+            return currentItemType;
+        }
+
+        public void setCurrentItemType(String currentItemType) {
+            this.currentItemType = currentItemType;
+        }
+
+        public String getPathType() {
+            return pathType;
+        }
+
+        public void setPathType(String pathType) {
+            this.pathType = pathType;
+        }
+
+        public Long getPathId() {
+            return pathId;
+        }
+
+        public void setPathId(Long pathId) {
+            this.pathId = pathId;
+        }
+
+        public String getNotificationType() {
+            return notificationType;
+        }
+
+        public void setNotificationType(String notificationType) {
+            this.notificationType = notificationType;
+        }
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
+    }
 }

@@ -1,10 +1,12 @@
 package org.gooru.notifications.writers;
 
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This writer is triggered when teacher assigns a suggestion to student.
- *
+ * <p>
  * The notification is initiated from teacher, for specific student from Navigate Next module. Hence, it should be
  * having access to collection as well as current item. Thus this handler won't require a hack to actually read and
  * populate correct context based on path id/type if present.
@@ -17,6 +19,7 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
     private NotificationsConsumerCommand command;
     private StudentNotificationsModel model;
     private NotificationsWriterDao dao;
+    private static final Logger LOGGER = LoggerFactory.getLogger(TeacherSuggestionNotificationsWriterService.class);
 
     TeacherSuggestionNotificationsWriterService(DBI dbi) {
         this.dbi = dbi;
@@ -36,6 +39,8 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
         if (!notificationExistsForSpecifiedContext()) {
             createModel();
             persistModel();
+        } else {
+            LOGGER.info("Notification already exists for specified context. Will not create new one.");
         }
     }
 
@@ -79,21 +84,25 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
     }
 
     private void deleteStudentNotificationById() {
-        getDao().deleteStudentNotificationById(model.getId());
+        if (model != null && model.getId() != null) {
+            getDao().deleteStudentNotificationById(model.getId());
+        } else {
+            LOGGER.info("No notification found to be reset. Will continue.");
+        }
     }
 
     private StudentNotificationsModel fetchNotificationWithSpecifiedContext() {
         if (command.getCollectionId() == null) {
             if (command.getPathId() == null) {
-                model = getDao().findStudentNotificationForContextWithoutCollectionAndPath(command.getEvent());
+                model = getDao().findStudentNotificationForContextWithoutCollectionAndPath(command.asBean());
             } else {
-                model = getDao().findStudentNotificationForContextWithoutCollection(command.getEvent());
+                model = getDao().findStudentNotificationForContextWithoutCollection(command.asBean());
             }
         } else {
             if (command.getPathId() == null) {
-                model = getDao().findStudentNotificationForContextWithoutPath(command.getEvent());
+                model = getDao().findStudentNotificationForContextWithoutPath(command.asBean());
             } else {
-                model = getDao().findStudentNotificationForContext(command.getEvent());
+                model = getDao().findStudentNotificationForContext(command.asBean());
             }
         }
         return model;

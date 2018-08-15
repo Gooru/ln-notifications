@@ -19,7 +19,6 @@ public class StudentNotificationsModelMapper implements ResultSetMapper<StudentN
         model.setId(r.getLong(AttributeNames.ID));
         model.setUserId(UuidUtils.convertStringToUuid(r.getString(AttributeNames.CTX_USER_ID)));
         model.setClassId(UuidUtils.convertStringToUuid(r.getString(AttributeNames.CTX_CLASS_ID)));
-        model.setClassCode(r.getString(AttributeNames.CTX_CLASS_CODE));
         model.setCourseId(UuidUtils.convertStringToUuid(r.getString(AttributeNames.CTX_COURSE_ID)));
         model.setUnitId(UuidUtils.convertStringToUuid(r.getString(AttributeNames.CTX_UNIT_ID)));
         model.setLessonId(UuidUtils.convertStringToUuid(r.getString(AttributeNames.CTX_LESSON_ID)));
@@ -41,7 +40,6 @@ public class StudentNotificationsModelMapper implements ResultSetMapper<StudentN
         static final String ID = "id";
         static final String CTX_USER_ID = "ctx_user_id";
         static final String CTX_CLASS_ID = "ctx_class_id";
-        static final String CTX_CLASS_CODE = "ctx_class_code";
         static final String CTX_COURSE_ID = "ctx_course_id";
         static final String CTX_UNIT_ID = "ctx_unit_id";
         static final String CTX_LESSON_ID = "ctx_lesson_id";

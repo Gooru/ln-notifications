@@ -44,7 +44,7 @@ public class NotificationsConsumer extends ConsumerTemplate<String, String> {
             LOGGER.debug("Processing record on topic: '{}", record.topic());
             LOGGER.debug("Key : '{}' === Value: '{}'", record.key(), record.value());
             LOGGER.debug("Done processing.");
-        } catch (Exception e) {
+        } catch (Throwable e) {
             LOGGER.warn("Exception while processing record: ", e);
             ERR_LOGGER.warn(record.value());
         }

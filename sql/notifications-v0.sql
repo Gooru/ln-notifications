@@ -108,22 +108,22 @@ ALTER TABLE student_notifications ADD CONSTRAINT pi_pt_chk CHECK ((ctx_path_id i
 
 CREATE UNIQUE INDEX sn_ucculcppit_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id,
-    current_item_id, current_item_type, ctx_path_id, ctx_path_type)
+    current_item_id, current_item_type, notification_type, ctx_path_id, ctx_path_type)
     where ctx_path_id is not null and ctx_path_type is not null and ctx_collection_id is not null;
 
 CREATE UNIQUE INDEX sn_ucculcit_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id,
-    current_item_id, current_item_type)
+    current_item_id, current_item_type, notification_type)
     where ctx_path_id is null and ctx_path_type is null and ctx_collection_id is not null;
 
 CREATE UNIQUE INDEX sn_ucculcppit1_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id,
-    current_item_id, current_item_type, ctx_path_id, ctx_path_type)
+    current_item_id, current_item_type, notification_type, ctx_path_id, ctx_path_type)
     where ctx_path_id is not null and ctx_path_type is not null and ctx_collection_id is null;
 
 CREATE UNIQUE INDEX sn_ucculcit1_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id,
-    current_item_id, current_item_type)
+    current_item_id, current_item_type, notification_type)
     where ctx_path_id is null and ctx_path_type is null and ctx_collection_id is null;
 
 CREATE INDEX sn_ua_idx ON student_notifications USING btree (updated_at);
