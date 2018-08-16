@@ -35,10 +35,17 @@ class TeacherOverrideAndGradingCompleteNotificationsWriterService implements Not
     @Override
     public void handleNotifications(NotificationsConsumerCommand command) {
         this.command = command;
+        setup();
         if (command.isActionInitiate()) {
             createNotification();
         } else {
             resetNotification();
+        }
+    }
+
+    private void setup() {
+        if (command.isOnSystemPath()) {
+            command.setCollectionId(fetchCollectionId());
         }
     }
 
@@ -62,7 +69,7 @@ class TeacherOverrideAndGradingCompleteNotificationsWriterService implements Not
         model.setCourseId(command.getCourseId());
         model.setUnitId(command.getUnitId());
         model.setLessonId(command.getLessonId());
-        model.setCollectionId(fetchCollectionId());
+        model.setCollectionId(command.getCollectionId());
         model.setCurrentItemId(command.getCurrentItemId());
         model.setCurrentItemType(command.getCurrentItemType());
         model.setNotificationType(command.getNotificationType());

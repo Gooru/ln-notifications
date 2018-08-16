@@ -22,7 +22,6 @@ class NotificationsConsumerCommand {
     private Long pathId;
     private String notificationType;
     private String action;
-    private NotificationsEvent event;
 
     static NotificationsConsumerCommand build(String input) {
         JsonObject json = new JsonObject(input);
@@ -45,7 +44,6 @@ class NotificationsConsumerCommand {
         command.pathType = event.getPathType();
         command.notificationType = event.getNotificationType();
         command.action = event.getAction();
-        command.event = event;
         return command;
     }
 
@@ -97,8 +95,14 @@ class NotificationsConsumerCommand {
         return action;
     }
 
-    public NotificationsEvent getEvent() {
-        return event;
+    public void setCollectionId(UUID collectionId) {
+        // This code is to enable hack so that we can set collection id later. But we do this only if we are on
+        // system path.
+        if (isOnSystemPath()) {
+            this.collectionId = collectionId;
+        } else {
+            throw new IllegalStateException("Trying to set collection id in command when it is not on system path");
+        }
     }
 
     public boolean isActionComplete() {
