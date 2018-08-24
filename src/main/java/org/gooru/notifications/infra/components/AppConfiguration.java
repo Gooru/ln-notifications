@@ -19,6 +19,7 @@ public final class AppConfiguration implements Initializer {
     private static final String CONSUMERS_CONFIG = "consumers.config";
     private static final String CONSUMERS_DEPLOY = "consumers.deploy";
     private static final String PATHID_HACK_ENABLED = "pathid.hack.enabled";
+    private static final String API_MODE = "api.mode";
     private JsonObject configuration;
     private JsonNode globalConfiguration;
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfiguration.class);
@@ -53,6 +54,10 @@ public final class AppConfiguration implements Initializer {
                 }
             }
         }
+    }
+
+    public boolean isApiOnlyMode() {
+        return configuration.getBoolean(API_MODE, false);
     }
 
     public boolean isPathIdHackEnabled() {

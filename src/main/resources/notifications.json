@@ -68,6 +68,7 @@
     "limit.default": 10,
     "limit.max": 25,
     "pathid.hack.enabled": true,
+    "api.mode": false,
     "context.mbus.timeout.seconds": 60
   },
   "vertxOptions": {

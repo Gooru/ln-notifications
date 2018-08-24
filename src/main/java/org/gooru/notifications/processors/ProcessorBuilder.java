@@ -4,6 +4,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
+import org.gooru.notifications.processors.resetnotifications.ResetNotificationsProcessor;
 import org.gooru.notifications.processors.studentnotifications.FetchStudentNotificationsProcessor;
 import org.gooru.notifications.processors.teachernotifications.FetchTeacherNotificationsProcessor;
 import org.gooru.notifications.responses.MessageResponse;
@@ -29,5 +30,9 @@ public final class ProcessorBuilder {
     public static AsyncMessageProcessor buildFetchStudentNotificationsProcessor(Vertx vertx,
         Message<JsonObject> message) {
         return new FetchStudentNotificationsProcessor(vertx, message);
+    }
+
+    public static AsyncMessageProcessor buildResetNotificationProcessor(Vertx vertx, Message<JsonObject> message) {
+        return new ResetNotificationsProcessor(vertx, message);
     }
 }

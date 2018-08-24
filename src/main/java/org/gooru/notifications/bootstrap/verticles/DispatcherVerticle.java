@@ -46,6 +46,9 @@ public class DispatcherVerticle extends AbstractVerticle {
             case Constants.Message.MSG_OP_NOTIFICATIONS_TEACHER:
                 future = ProcessorBuilder.buildFetchTeacherNotificationsProcessor(vertx, message).process();
                 break;
+            case Constants.Message.MSG_OP_NOTIFICATIONS_RESET:
+                future = ProcessorBuilder.buildResetNotificationProcessor(vertx, message).process();
+                break;
             default:
                 LOGGER.warn("Invalid operation type");
                 future = ProcessorBuilder.buildPlaceHolderExceptionProcessor(vertx, message).process();
