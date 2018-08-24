@@ -1,6 +1,7 @@
 package org.gooru.notifications.infra.kafka;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.gooru.notifications.infra.components.AppConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,30 +32,32 @@ public class ConsumersDeployer {
     }
 
     public void deploy() {
-        initializeDeploymentRegistry();
+        if (!AppConfiguration.getInstance().isApiOnlyMode()) {
+            LOGGER.info("Working in non API mode, will deploy Kafka consumers");
+            initializeDeploymentRegistry();
 
-        initializeDeployments();
+            initializeDeployments();
 
-        doDeploy();
+            doDeploy();
 
-        setupShutdown();
+            setupShutdown();
+        } else {
+            LOGGER.info("Working in API mode only, will not deploy Kafka consumers");
+        }
     }
 
     private void setupShutdown() {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                for (ConsumerTemplate consumer : deployments) {
-                    consumer.shutdown();
-                }
-                executorService.shutdown();
-                try {
-                    executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
-                } catch (InterruptedException e) {
-                    LOGGER.warn("Exception awaiting termination of executor service", e);
-                }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            for (ConsumerTemplate consumer : deployments) {
+                consumer.shutdown();
             }
-        });
+            executorService.shutdown();
+            try {
+                executorService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                LOGGER.warn("Exception awaiting termination of executor service", e);
+            }
+        }));
     }
 
     private void doDeploy() {
@@ -96,7 +99,7 @@ public class ConsumersDeployer {
         if (countOfDistinctConsumersToDeploy <= 0) {
             throw new IllegalStateException("No consumers to deploy");
         }
-        LOGGER.debug("Total number of DEPs to deploy: {}", countOfDistinctConsumersToDeploy);
+        LOGGER.debug("Total number of consumers to deploy: {}", countOfDistinctConsumersToDeploy);
         return countOfDistinctConsumersToDeploy;
     }
 }
