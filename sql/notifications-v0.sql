@@ -94,7 +94,7 @@ create table student_notifications (
     current_item_title text NOT NULL,
     notification_type text NOT NULL,
     ctx_path_id bigint,
-    ctx_path_type text CHECK (ctx_path_type::text = ANY (ARRAY['system'::text, 'student'::text, 'route0'::text])),
+    ctx_path_type text CHECK (ctx_path_type::text = ANY (ARRAY['system'::text, 'teacher'::text, 'route0'::text])),
     created_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
     CONSTRAINT sn_pkey PRIMARY KEY (id),
