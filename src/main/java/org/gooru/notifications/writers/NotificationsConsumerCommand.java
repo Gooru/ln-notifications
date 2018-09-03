@@ -40,7 +40,7 @@ class NotificationsConsumerCommand {
         command.collectionId = UuidUtils.convertStringToUuid(event.getCollectionId());
         command.currentItemId = UuidUtils.convertStringToUuid(event.getCurrentItemId());
         command.currentItemType = event.getCurrentItemType();
-        command.pathId = event.getPathId();
+        command.pathId = (event.getPathId() == null || event.getPathId() == 0) ? null : event.getPathId();
         command.pathType = event.getPathType();
         command.notificationType = event.getNotificationType();
         command.action = event.getAction();

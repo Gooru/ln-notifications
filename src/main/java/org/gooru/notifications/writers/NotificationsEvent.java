@@ -95,7 +95,11 @@ public class NotificationsEvent {
     }
 
     public void setPathId(Long pathId) {
-        this.pathId = pathId;
+        if (pathId == null || pathId == 0) {
+            this.pathId = null;
+        } else {
+            this.pathId = pathId;
+        }
     }
 
     public String getNotificationType() {
