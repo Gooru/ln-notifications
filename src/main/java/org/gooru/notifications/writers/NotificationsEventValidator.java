@@ -41,8 +41,8 @@ final class NotificationsEventValidator {
         if (!UuidUtils.validateUuid(event.getCurrentItemId())) {
             throw new IllegalArgumentException("Invalid current item id: " + event.getCurrentItemId());
         }
-        if ((event.getPathId() == null && event.getPathType() != null) ||
-                (event.getPathId() != null && event.getPathType() == null)) {
+        if (((event.getPathId() == null || event.getPathId() == 0) && event.getPathType() != null) ||
+                ((event.getPathId() != null && event.getPathId() != 0) && event.getPathType() == null)) {
             throw new IllegalArgumentException("Both path id and path type should be valid or null");
         }
         if (!PathTypeValidator.isValid(event.getPathType())) {
