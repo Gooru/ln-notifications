@@ -26,7 +26,7 @@ public final class RouteRequestUtility {
      * object, but don't send null
      */
 
-    public static JsonObject getBodyForMessage(RoutingContext routingContext) {
+    public static JsonObject getBodyForMessage(RoutingContext routingContext, JsonObject toBeMergedRequestBody) {
         JsonObject httpBody, result = new JsonObject();
         if (routingContext.request().method().name().equals(HttpMethod.POST.name()) || routingContext.request().method()
             .name().equals(HttpMethod.PUT.name())) {
@@ -50,6 +50,11 @@ public final class RouteRequestUtility {
         } else {
             httpBody = new JsonObject();
         }
+
+        if (toBeMergedRequestBody != null && !toBeMergedRequestBody.isEmpty()) {
+            httpBody.mergeIn(toBeMergedRequestBody);
+        }
+
         result.put(Constants.Message.MSG_HTTP_BODY, httpBody);
         result
             .put(Constants.Message.MSG_KEY_SESSION, (JsonObject) routingContext.get(Constants.Message.MSG_KEY_SESSION));
@@ -57,5 +62,9 @@ public final class RouteRequestUtility {
         result
             .put(Constants.Message.MSG_SESSION_TOKEN, (String) routingContext.get(Constants.Message.MSG_SESSION_TOKEN));
         return result;
+    }
+
+    public static JsonObject getBodyForMessage(RoutingContext routingContext) {
+        return getBodyForMessage(routingContext, null);
     }
 }

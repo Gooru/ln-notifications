@@ -27,6 +27,7 @@ public final class Constants {
         public static final String MSG_OP_AUTH = "auth";
         public static final String MSG_OP_NOTIFICATIONS_TEACHER = "op.notifications.teacher";
         public static final String MSG_OP_NOTIFICATIONS_STUDENT = "op.notifications.student";
+        public static final String MSG_OP_NOTIFICATIONS_RESET = "op.notifications.reset";
         public static final String MSG_KEY_SESSION = "session";
         public static final String MSG_OP_STATUS = "mb.op.status";
         public static final String MSG_OP_STATUS_SUCCESS = "mb.op.status.success";
@@ -57,6 +58,11 @@ public final class Constants {
         private Params() {
             throw new AssertionError();
         }
+
+        public static final String ID_PARAM = "id";
+        public static final String ROLE_PARAM = "role";
+        public static final String TEACHER_ROLE_PARAM = "teacher";
+        public static final String STUDENT_ROLE_PARAM = "student";
     }
 
     public static final class Route {
@@ -64,8 +70,10 @@ public final class Constants {
         public static final String API_AUTH_ROUTE = "/api/notifications/*";
 
         private static final String API_BASE_ROUTE = "/api/notifications/:version/";
-        public static final String API_SUGGESTIONS_FETCH_TEACHER = API_BASE_ROUTE + "teacher";
-        public static final String API_SUGGESTIONS_FETCH_STUDENT = API_BASE_ROUTE + "student";
+        public static final String API_NOTIFICATION_FETCH_TEACHER = API_BASE_ROUTE + "teacher";
+        public static final String API_NOTIFICATION_FETCH_STUDENT = API_BASE_ROUTE + "student";
+        public static final String API_NOTIFICATION_TEACHER_RESET = API_BASE_ROUTE + "teacher/:" + Params.ID_PARAM;
+        public static final String API_NOTIFICATION_STUDENT_RESET = API_BASE_ROUTE + "student/:" + Params.ID_PARAM;
         public static final String API_INTERNAL_BANNER = "/api/internal/banner";
         public static final String API_INTERNAL_METRICS = "/api/internal/metrics";
 

@@ -9,6 +9,7 @@
 plugins {
     id 'java' // or 'groovy' Must be explicitly applied
     id "com.github.johnrengelman.shadow" version "2.0.2"
+    id 'net.nemerosa.versioning' version '2.0.0'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -30,6 +31,7 @@ if (!JavaVersion.current().java8Compatible) {
 
 
 ext {
+    kafkaVersion = '1.1.0'
     vertxVersion = '3.5.0'
     slf4jVersion = '1.7.12'
     junitVersion = '4.12'
@@ -52,12 +54,13 @@ dependencies {
     compile "org.postgresql:postgresql:${postgresVersion}"
     compile "io.vertx:vertx-redis-client:${vertxVersion}"
     compile "org.jdbi:jdbi:${jdbiVersion}"
+    compile "org.apache.kafka:kafka_2.12:${kafkaVersion}"
     // Test dependencies
     testCompile "junit:junit:${junitVersion}"
 
 }
 
-version = "0.1-snapshot"
+version = 1.0
 
 tasks.withType(JavaCompile) {
     //enable compilation in a separate daemon process
@@ -83,4 +86,11 @@ defaultTasks 'shadowJar'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
+}
+
+shadowJar.dependsOn versionFile
+
+versionFile {
+    def versionFileDirectory = "${project.rootDir}/src/main/resources"
+    file = new File(versionFileDirectory, 'version.properties')
 }
