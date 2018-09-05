@@ -9,7 +9,7 @@
 plugins {
     id 'java' // or 'groovy' Must be explicitly applied
     id "com.github.johnrengelman.shadow" version "2.0.2"
-    id 'net.nemerosa.versioning' version '2.0.0'
+    id 'net.nemerosa.versioning' version '2.7.0'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -39,6 +39,9 @@ ext {
     hikariVersion = '2.7.6'
     postgresVersion = '42.2.2'
     jdbiVersion = '2.78'
+
+    versionFileName = 'version.properties'
+    versionFileDirectory = "build/version"
 }
 
 dependencies {
@@ -61,6 +64,14 @@ dependencies {
 }
 
 version = 1.0
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources", "${versionFileDirectory}"
+        }
+    }
+}
 
 tasks.withType(JavaCompile) {
     //enable compilation in a separate daemon process
@@ -88,9 +99,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
 }
 
-shadowJar.dependsOn versionFile
+compileJava.dependsOn versionFile
 
 versionFile {
-    def versionFileDirectory = "${project.rootDir}/src/main/resources"
-    file = new File(versionFileDirectory, 'version.properties')
+    file = new File(versionFileDirectory, versionFileName)
 }
