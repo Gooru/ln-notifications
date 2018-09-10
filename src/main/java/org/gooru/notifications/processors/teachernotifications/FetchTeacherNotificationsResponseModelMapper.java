@@ -32,7 +32,7 @@ public class FetchTeacherNotificationsResponseModelMapper
         result.setCtxPathId(r.getLong(Attributes.CTX_PATH_ID));
         result.setCtxPathType(r.getString(Attributes.CTX_PATH_TYPE));
         result.setOccurrence(r.getInt(Attributes.OCCURRENCE));
-        result.setUpdatedAt(r.getDate(Attributes.UPDATED_AT).getTime());
+        result.setUpdatedAt(r.getTimestamp(Attributes.UPDATED_AT).getTime());
         return result;
     }
 
