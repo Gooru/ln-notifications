@@ -41,8 +41,8 @@ class ResetNotificationsService {
                 LOGGER.warn("Invalid notification type: {}", command.getRole());
             }
         } else {
-            LOGGER.warn("User '{}' Tried to reset actionable notification: '{}'", command.getUserId(),
-                command.getNotificationId());
+            LOGGER.warn("User '{}' Tried to reset actionable/deleted notification: '{}'", command.getUserId(),
+                    command.getNotificationId());
         }
     }
 
@@ -55,6 +55,12 @@ class ResetNotificationsService {
             actionable = getDao().isTeacherNotificationActionable(command.getNotificationId());
         } else {
             LOGGER.warn("Invalid notification type: {}", command.getRole());
+        }
+        if (actionable == null) {
+            // DB field is not null. If we get it from DB then it must be true/false. Else it does not exist
+            LOGGER.warn("User: '{}' tried to delete already deleted notification: '{}'.", command.getUserId(),
+                command.getNotificationId());
+            return false;
         }
         return !actionable;
     }
