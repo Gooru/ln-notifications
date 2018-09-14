@@ -24,7 +24,7 @@ interface FetchStudentNotificationsDao {
     @SqlQuery(
         "select id, ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id, " +
             " current_item_id, current_item_type, current_item_title, notification_type, ctx_path_id, ctx_path_type, " +
-            " updated_at from student_notifications where ctx_class_id = :classId and " +
+            " updated_at from student_notifications where ctx_class_id = :classId and ctx_user_id = :userId and " +
             " to_timestamp(:boundary) > updated_at order by updated_at desc limit :limit")
     List<FetchStudentNotificationsResponseModel> fetchNotificationsForSpecificClass(
         @BindBean FetchStudentNotificationsCommand.FetchStudentNotificationCommandBean model);
@@ -33,9 +33,9 @@ interface FetchStudentNotificationsDao {
     @SqlQuery(
         "select id, ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id, " +
             "current_item_id, current_item_type, current_item_title, notification_type, ctx_path_id, ctx_path_type, " +
-            "updated_at from student_notifications where ctx_class_id = any(select id from class c inner join " +
-            "class_member cm on cm.class_id = c.id where cm.user_id = :userId and c.is_deleted = false)" +
-            " and to_timestamp(:boundary) > updated_at order by updated_at desc limit :limit")
+            "updated_at from student_notifications where ctx_user_id = :userId and ctx_class_id = any(select id from " +
+            "class c inner join class_member cm on cm.class_id = c.id where cm.user_id = :userId and c.is_deleted = " +
+            "false) and to_timestamp(:boundary) > updated_at order by updated_at desc limit :limit")
     List<FetchStudentNotificationsResponseModel> fetchNotificationsForAllClasses(
         @BindBean FetchStudentNotificationsCommand.FetchStudentNotificationCommandBean model);
 

@@ -31,7 +31,7 @@ public class FetchStudentNotificationsResponseModelMapper
         result.setNotificationType(r.getString(Attributes.NOTIFICATION_TYPE));
         result.setCtxPathId(r.getLong(Attributes.CTX_PATH_ID));
         result.setCtxPathType(r.getString(Attributes.CTX_PATH_TYPE));
-        result.setUpdatedAt(r.getDate(Attributes.UPDATED_AT).getTime());
+        result.setUpdatedAt(r.getTimestamp(Attributes.UPDATED_AT).getTime());
         return result;
     }
 

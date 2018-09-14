@@ -118,7 +118,7 @@ class FetchStudentNotificationsCommand {
         String boundaryString = input.getRequestBody().getString(CommandAttributes.BOUNDARY);
         if (boundaryString != null && !boundaryString.isEmpty()) {
             try {
-                boundary = Long.valueOf(boundaryString);
+                boundary = (Long.valueOf(boundaryString) + 1)/1000;
             } catch (NumberFormatException e) {
                 LOGGER.warn("Invalid number for boundary", e);
                 throw new IllegalArgumentException("Invalid number for boundary");

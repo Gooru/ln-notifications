@@ -65,7 +65,7 @@ class FetchStudentNotificationsService {
         response = new FetchStudentNotificationsResponse();
         response.setNotifications(models);
         if (!models.isEmpty()) {
-            response.setBoundary((models.get(models.size() - 1).getUpdatedAt()) / 1000);
+            response.setBoundary((models.get(models.size() - 1).getUpdatedAt()));
         } else {
             response.setBoundary(null);
         }
