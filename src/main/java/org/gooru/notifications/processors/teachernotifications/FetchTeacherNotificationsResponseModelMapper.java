@@ -33,6 +33,8 @@ public class FetchTeacherNotificationsResponseModelMapper
         result.setCtxPathType(r.getString(Attributes.CTX_PATH_TYPE));
         result.setOccurrence(r.getInt(Attributes.OCCURRENCE));
         result.setUpdatedAt(r.getTimestamp(Attributes.UPDATED_AT).getTime());
+        result.setCtxSource(r.getString(Attributes.CTX_SOURCE));
+        result.setMilestoneId(r.getString(Attributes.MILESTONE_ID));
         return result;
     }
 
@@ -56,5 +58,7 @@ public class FetchTeacherNotificationsResponseModelMapper
         static final String CTX_PATH_TYPE = "ctx_path_type";
         static final String OCCURRENCE = "occurrence";
         static final String UPDATED_AT = "updated_at";
+        static final String CTX_SOURCE = "ctx_source";
+        static final String MILESTONE_ID = "milestone_id";
     }
 }
