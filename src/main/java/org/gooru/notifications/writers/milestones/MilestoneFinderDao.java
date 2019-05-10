@@ -18,7 +18,7 @@ public interface MilestoneFinderDao {
     Long fetchCurrentGrade(@Bind("classId") UUID classId, @Bind("courseId") UUID courseId);
 
     @SqlQuery("select milestone_id from milestone_lesson_map where course_id = :courseId and unit_id = :unitId and " +
-                  "lesson_id = :lessonId and fw_code = (select fw_code from grade_master where where id = " +
+                  "lesson_id = :lessonId and fw_code = (select fw_code from grade_master where id = " +
                   ":destinationGrade) limit 1")
     String fetchMilestoneId(@Bind("courseId") UUID courseId, @Bind("unitId") UUID unitId,
         @Bind("lessonId") UUID lessonId,
