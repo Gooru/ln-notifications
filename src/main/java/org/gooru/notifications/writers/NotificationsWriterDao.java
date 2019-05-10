@@ -69,9 +69,9 @@ interface NotificationsWriterDao {
     @SqlUpdate(
         "insert into student_notifications (ctx_user_id, ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, " +
             "ctx_lesson_id, ctx_collection_id, current_item_id, current_item_type, current_item_title, " +
-            "notification_type, ctx_path_id, ctx_path_type) values (:userId, :classId, :classCode, :courseId, " +
-            ":unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, :currentItemTitle, " +
-            ":notificationType, :pathId, :pathType)")
+            "notification_type, ctx_path_id, ctx_path_type, milestone_id, ctx_source) values (:userId, :classId, " +
+            ":classCode, :courseId, :unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, " +
+            ":currentItemTitle, :notificationType, :pathId, :pathType, :milestoneId, :ctxSource)")
     void persistStudentNotification(@BindBean StudentNotificationsModel model);
 
     @SqlQuery("select ctx_collection_id from user_navigation_paths where id = :pathId and ctx_user_id = :userId and " +
@@ -83,11 +83,11 @@ interface NotificationsWriterDao {
     void deleteTeacherNotificationById(@Bind("id") Long id);
 
     @SqlUpdate(
-        "insert into teacher_notifications (ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, " +
-            "ctx_lesson_id, ctx_collection_id, current_item_id, current_item_type, current_item_title, " +
-            "notification_type, ctx_path_id, ctx_path_type, occurrence, users) values (:classId, :classCode," +
-            " :courseId, :unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, :currentItemTitle, " +
-            ":notificationType, :pathId, :pathType, :occurrence, :usersArray)")
+        "insert into teacher_notifications (ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, ctx_lesson_id, " +
+            "ctx_collection_id, current_item_id, current_item_type, current_item_title, notification_type, " +
+            "ctx_path_id, ctx_path_type, occurrence, users, milestone_id, ctx_source) values (:classId, :classCode, " +
+            ":courseId, :unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, :currentItemTitle, " +
+            ":notificationType, :pathId, :pathType, :occurrence, :usersArray, :milestoneId, :ctxSource)")
     void persistTeacherNotification(@BindBean TeacherNotificationsModel model,
         @Bind("usersArray")PGArray<String> usersArray);
 

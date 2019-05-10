@@ -22,6 +22,7 @@ class NotificationsConsumerCommand {
     private Long pathId;
     private String notificationType;
     private String action;
+    private String ctxSource;
 
     static NotificationsConsumerCommand build(String input) {
         JsonObject json = new JsonObject(input);
@@ -44,6 +45,7 @@ class NotificationsConsumerCommand {
         command.pathType = event.getPathType();
         command.notificationType = event.getNotificationType();
         command.action = event.getAction();
+        command.ctxSource = ContextSourceFinder.findContextSource(event);
         return command;
     }
 
@@ -93,6 +95,10 @@ class NotificationsConsumerCommand {
 
     public String getAction() {
         return action;
+    }
+
+    public String getCtxSource() {
+        return ctxSource;
     }
 
     public void setCollectionId(UUID collectionId) {

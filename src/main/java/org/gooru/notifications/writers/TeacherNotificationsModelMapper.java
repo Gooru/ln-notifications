@@ -29,6 +29,8 @@ public class TeacherNotificationsModelMapper implements ResultSetMapper<TeacherN
         model.setPathId(r.getLong(AttributeNames.CTX_PATH_ID));
         model.setPathType(r.getString(AttributeNames.CTX_PATH_TYPE));
         model.setOccurrence(r.getInt(AttributeNames.OCCURRENCE));
+        model.setCtxSource(r.getString(AttributeNames.CTX_SOURCE));
+        model.setMilestoneId(r.getString(AttributeNames.MILESTONE_ID));
         String[] usersArray = (String[]) r.getArray(AttributeNames.USERS).getArray();
         model.setUsers(Arrays.asList(usersArray));
         return model;
@@ -52,6 +54,8 @@ public class TeacherNotificationsModelMapper implements ResultSetMapper<TeacherN
         static final String CTX_PATH_TYPE = "ctx_path_type";
         static final String USERS = "users";
         static final String OCCURRENCE = "occurrence";
+        static final String CTX_SOURCE = "ctx_source";
+        static final String MILESTONE_ID = "milestone_id";
     }
 
 }

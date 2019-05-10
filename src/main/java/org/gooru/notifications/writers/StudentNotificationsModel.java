@@ -21,6 +21,8 @@ public class StudentNotificationsModel {
     private String pathType;
     private Long pathId;
     private String notificationType;
+    private String milestoneId;
+    private String ctxSource;
 
     public Long getId() {
         return id;
@@ -132,5 +134,21 @@ public class StudentNotificationsModel {
 
     public void setNotificationType(String notificationType) {
         this.notificationType = notificationType;
+    }
+
+    public String getMilestoneId() {
+        return milestoneId;
+    }
+
+    public void setMilestoneId(String milestoneId) {
+        this.milestoneId = milestoneId;
+    }
+
+    public String getCtxSource() {
+        return ctxSource;
+    }
+
+    public void setCtxSource(String ctxSource) {
+        this.ctxSource = ctxSource;
     }
 }

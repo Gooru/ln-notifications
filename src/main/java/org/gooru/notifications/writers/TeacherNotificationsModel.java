@@ -23,6 +23,8 @@ public class TeacherNotificationsModel {
     private String notificationType;
     private List<String> users;
     private Integer occurrence;
+    private String milestoneId;
+    private String ctxSource;
 
     public Long getId() {
         return id;
@@ -144,6 +146,22 @@ public class TeacherNotificationsModel {
         this.users = users;
     }
 
+    public String getMilestoneId() {
+        return milestoneId;
+    }
+
+    public void setMilestoneId(String milestoneId) {
+        this.milestoneId = milestoneId;
+    }
+
+    public String getCtxSource() {
+        return ctxSource;
+    }
+
+    public void setCtxSource(String ctxSource) {
+        this.ctxSource = ctxSource;
+    }
+
     @Override
     public String toString() {
         return "TeacherNotificationsModel{" + "id=" + id + ", classId=" + classId + ", classCode='" + classCode + '\'' +
@@ -151,6 +169,7 @@ public class TeacherNotificationsModel {
                    collectionId + ", currentItemId=" + currentItemId + ", currentItemTitle='" + currentItemTitle +
                    '\'' + ", currentItemType='" + currentItemType + '\'' + ", pathType='" + pathType + '\'' +
                    ", pathId=" + pathId + ", notificationType='" + notificationType + '\'' + ", users=" + users +
-                   ", occurrence=" + occurrence + '}';
+                   ", occurrence=" + occurrence + ", milestoneId='" + milestoneId + '\'' + ", ctxSource='" + ctxSource +
+                   '\'' + '}';
     }
 }

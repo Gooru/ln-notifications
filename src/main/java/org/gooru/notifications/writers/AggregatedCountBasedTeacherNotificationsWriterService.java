@@ -1,7 +1,10 @@
 package org.gooru.notifications.writers;
 
+import org.gooru.notifications.infra.jdbi.DBICreator;
 import org.gooru.notifications.infra.utils.CollectionUtils;
 import org.gooru.notifications.infra.utils.UuidUtils;
+import org.gooru.notifications.writers.milestones.MilestoneFinder;
+import org.gooru.notifications.writers.milestones.MilestoneFinderContext;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,6 +93,14 @@ class AggregatedCountBasedTeacherNotificationsWriterService implements Notificat
         model.setClassCode(fetchClassCode());
         model.setCurrentItemTitle(fetchCurrentItemTitle());
         model.setOccurrence(1);
+        model.setCtxSource(command.getCtxSource());
+        model.setMilestoneId(
+            MilestoneFinder.build(DBICreator.getDbiForDefaultDS(), buildMilestoneFinderContext()).findMilestone());
+    }
+
+    private MilestoneFinderContext buildMilestoneFinderContext() {
+        return new MilestoneFinderContext(command.getClassId(), command.getCourseId(), command.getUnitId(),
+            command.getLessonId());
     }
 
     private String fetchClassCode() {
