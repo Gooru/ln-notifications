@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface MilestoneFinderDao {
 
     @SqlQuery(
-        "select current_grade from class where id = :classId and is_deleted = false and milestone_view_applicable = " +
+        "select grade_current from class where id = :classId and is_deleted = false and milestone_view_applicable = " +
             " true and course_id = (select id from course where id = :courseId and is_deleted = false and version = " +
             " 'premium')")
     Long fetchCurrentGrade(@Bind("classId") UUID classId, @Bind("courseId") UUID courseId);
