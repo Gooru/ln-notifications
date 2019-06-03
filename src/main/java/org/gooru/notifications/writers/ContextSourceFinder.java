@@ -13,7 +13,9 @@ final class ContextSourceFinder {
     }
 
     static String findContextSource(NotificationsEvent event) {
-
+        if (event.getContentSource() != null) {
+            return event.getContentSource();
+        }
         return COURSE_MAP;
     }
 }
