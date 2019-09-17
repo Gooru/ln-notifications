@@ -5,6 +5,6 @@ package org.gooru.notifications.infra.kafka;
  */
 public interface Deployable {
 
-    String getDeploymentName();
+  String getDeploymentName();
 
 }

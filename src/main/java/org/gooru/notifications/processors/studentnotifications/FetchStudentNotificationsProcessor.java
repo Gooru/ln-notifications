@@ -16,46 +16,49 @@ import org.slf4j.LoggerFactory;
  * @author ashish.
  */
 public class FetchStudentNotificationsProcessor implements AsyncMessageProcessor {
-    private final Vertx vertx;
-    private final Message<JsonObject> message;
-    private static final Logger LOGGER = LoggerFactory.getLogger(FetchStudentNotificationsProcessor.class);
-    private final Future<MessageResponse> result;
-    private EventBusMessage eventBusMessage;
-    private FetchStudentNotificationsService fetchStudentNotificationsService =
-        new FetchStudentNotificationsService(DBICreator.getDbiForDefaultDS());
+  private final Vertx vertx;
+  private final Message<JsonObject> message;
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(FetchStudentNotificationsProcessor.class);
+  private final Future<MessageResponse> result;
+  private EventBusMessage eventBusMessage;
+  private FetchStudentNotificationsService fetchStudentNotificationsService =
+      new FetchStudentNotificationsService(DBICreator.getDbiForDefaultDS());
 
-    public FetchStudentNotificationsProcessor(Vertx vertx, Message<JsonObject> message) {
-        this.vertx = vertx;
-        this.message = message;
-        this.result = Future.future();
-    }
+  public FetchStudentNotificationsProcessor(Vertx vertx, Message<JsonObject> message) {
+    this.vertx = vertx;
+    this.message = message;
+    this.result = Future.future();
+  }
 
-    @Override
-    public Future<MessageResponse> process() {
-        vertx.<MessageResponse>executeBlocking(future -> {
-            try {
-                this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
+  @Override
+  public Future<MessageResponse> process() {
+    vertx.<MessageResponse>executeBlocking(future -> {
+      try {
+        this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
 
-                FetchStudentNotificationsCommand command = FetchStudentNotificationsCommand.builder(eventBusMessage);
-                FetchStudentNotificationsResponse response = fetchStudentNotificationsService.fetch(command);
-                JsonObject jsonResponse = JsonObject.mapFrom(response);
-                future.complete(createResponse(jsonResponse));
-            } catch (Throwable throwable) {
-                LOGGER.warn("Encountered exception", throwable);
-                future.fail(throwable);
-            }
-        }, asyncResult -> {
-            if (asyncResult.succeeded()) {
-                result.complete(asyncResult.result());
-            } else {
-                result.fail(asyncResult.cause());
-            }
-        });
-        return result;
-    }
+        FetchStudentNotificationsCommand command =
+            FetchStudentNotificationsCommand.builder(eventBusMessage);
+        FetchStudentNotificationsResponse response =
+            fetchStudentNotificationsService.fetch(command);
+        JsonObject jsonResponse = JsonObject.mapFrom(response);
+        future.complete(createResponse(jsonResponse));
+      } catch (Throwable throwable) {
+        LOGGER.warn("Encountered exception", throwable);
+        future.fail(throwable);
+      }
+    }, asyncResult -> {
+      if (asyncResult.succeeded()) {
+        result.complete(asyncResult.result());
+      } else {
+        result.fail(asyncResult.cause());
+      }
+    });
+    return result;
+  }
 
-    private MessageResponse createResponse(JsonObject response) {
-        return MessageResponseFactory.createOkayResponse(response);
-    }
+  private MessageResponse createResponse(JsonObject response) {
+    return MessageResponseFactory.createOkayResponse(response);
+  }
 
 }

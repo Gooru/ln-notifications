@@ -8,5 +8,5 @@ import io.vertx.ext.web.Router;
  * @author ashish.
  */
 public interface RouteConfigurator {
-    void configureRoutes(Vertx vertx, Router router, JsonObject config);
+  void configureRoutes(Vertx vertx, Router router, JsonObject config);
 }

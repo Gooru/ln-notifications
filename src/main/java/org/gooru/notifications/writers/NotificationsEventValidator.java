@@ -28,7 +28,7 @@ final class NotificationsEventValidator {
         || !ContentSourceValidator.isValid(event.getContentSource())) {
       throw new IllegalArgumentException("Invalid content source: " + event.getContentSource());
     }
-    
+
     if (event.getContentSource().equalsIgnoreCase("coursemap")) {
       validateCoursemapContext(event);
     } else if (event.getContentSource().equalsIgnoreCase("class-activity")) {
@@ -172,7 +172,7 @@ final class NotificationsEventValidator {
       return COMPLETE.equals(value);
     }
   }
-  
+
   static final class ContentSourceValidator {
     private static final List<String> VALID_VALUES =
         Arrays.asList("class-activity", "coursemap", "proficiency");

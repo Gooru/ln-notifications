@@ -16,11 +16,9 @@ ADD CONSTRAINT student_notifications_ctx_source_check CHECK (ctx_source::text = 
 CREATE UNIQUE INDEX sn_uccacppit_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_ca_id, ctx_collection_id,
     current_item_id, current_item_type, notification_type, ctx_path_id, ctx_path_type)
-    where ctx_path_id is not null and ctx_path_type is not null and ctx_ca_id is not null 
-    and ctx_collection_id is not null;
+    where ctx_source = 'class-activity';
     
 CREATE UNIQUE INDEX sn_utxctppit_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_ca_id, ctx_collection_id,
     current_item_id, current_item_type, notification_type, ctx_path_id, ctx_path_type)
-    where ctx_path_id is not null and ctx_path_type is not null and ctx_tx_code is not null 
-    and ctx_tx_code_type is not null and ctx_collection_id is null;
+    where ctx_source = 'proficiency';
