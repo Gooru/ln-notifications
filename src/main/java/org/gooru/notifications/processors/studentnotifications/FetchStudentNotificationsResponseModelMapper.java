@@ -32,6 +32,8 @@ public class FetchStudentNotificationsResponseModelMapper
         result.setCtxPathId(r.getLong(Attributes.CTX_PATH_ID));
         result.setCtxPathType(r.getString(Attributes.CTX_PATH_TYPE));
         result.setUpdatedAt(r.getTimestamp(Attributes.UPDATED_AT).getTime());
+        result.setCtxSource(r.getString(Attributes.CTX_SOURCE));
+        result.setMilestoneId(r.getString(Attributes.MILESTONE_ID));
         return result;
     }
 
@@ -54,5 +56,7 @@ public class FetchStudentNotificationsResponseModelMapper
         static final String CTX_PATH_ID = "ctx_path_id";
         static final String CTX_PATH_TYPE = "ctx_path_type";
         static final String UPDATED_AT = "updated_at";
+        static final String CTX_SOURCE = "ctx_source";
+        static final String MILESTONE_ID = "milestone_id";
     }
 }

@@ -22,6 +22,8 @@ class FetchTeacherNotificationsResponseModel {
     private String ctxPathType;
     private int occurrence;
     private Long updatedAt;
+    private String ctxSource;
+    private String milestoneId;
 
     public Long getId() {
         return id;
@@ -141,5 +143,21 @@ class FetchTeacherNotificationsResponseModel {
 
     public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCtxSource() {
+        return ctxSource;
+    }
+
+    public void setCtxSource(String ctxSource) {
+        this.ctxSource = ctxSource;
+    }
+
+    public String getMilestoneId() {
+        return milestoneId;
+    }
+
+    public void setMilestoneId(String milestoneId) {
+        this.milestoneId = milestoneId;
     }
 }
