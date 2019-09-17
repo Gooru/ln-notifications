@@ -66,13 +66,12 @@ interface NotificationsWriterDao {
     @SqlQuery("select title from collection where id = :currentItemId")
     String fetchCollectionTitle(@Bind("currentItemId") UUID currentItemId);
 
-    @SqlUpdate(
-        "insert into student_notifications (ctx_user_id, ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, " +
-            "ctx_lesson_id, ctx_collection_id, current_item_id, current_item_type, current_item_title, " +
-            "notification_type, ctx_path_id, ctx_path_type, milestone_id, ctx_source) values (:userId, :classId, " +
-            ":classCode, :courseId, :unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, " +
-            ":currentItemTitle, :notificationType, :pathId, :pathType, :milestoneId, :ctxSource)")
-    void persistStudentNotification(@BindBean StudentNotificationsModel model);
+  @SqlUpdate("insert into student_notifications (ctx_user_id, ctx_class_id, ctx_class_code, ctx_course_id, ctx_unit_id, "
+      + "ctx_lesson_id, ctx_collection_id, current_item_id, current_item_type, current_item_title, "
+      + "notification_type, ctx_path_id, ctx_path_type, milestone_id, ctx_source, ctx_ca_id, ctx_tx_code, ctx_tx_code_type) "
+      + "values (:userId, :classId, :classCode, :courseId, :unitId, :lessonId, :collectionId, :currentItemId, :currentItemType, "
+      + ":currentItemTitle, :notificationType, :pathId, :pathType, :milestoneId, :ctxSource, :caId, :txCode, :txCodeType)")
+  void persistStudentNotification(@BindBean StudentNotificationsModel model);
 
     @SqlQuery("select ctx_collection_id from user_navigation_paths where id = :pathId and ctx_user_id = :userId and " +
                   "suggestion_type = :pathType")
@@ -135,4 +134,25 @@ interface NotificationsWriterDao {
             "current_item_id = :currentItemId and current_item_type = :currentItemType and notification_type = " +
             ":notificationType and ctx_path_id = :pathId and ctx_path_type = :pathType")
     TeacherNotificationsModel findTeacherNotificationForContext(@BindBean NotificationsConsumerCommandBean bean);
+
+  @Mapper(StudentNotificationsModelMapper.class)
+  @SqlQuery("select id, ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id, "
+      + "current_item_id, current_item_type, current_item_title, notification_type, ctx_path_id, ctx_path_type,  "
+      + "ctx_ca_id, ctx_source, milestone_id, ctx_tx_code, ctx_tx_code_type from student_notifications "
+      + "where ctx_user_id = :userId and ctx_class_id =:classId and ctx_ca_id = :caId "
+      + "and ctx_collection_id =:collectionId and current_item_id = :currentItemId and current_item_type = :currentItemType "
+      + " and notification_type = :notificationType and ctx_path_id =:pathId and ctx_path_type = :pathType")
+  StudentNotificationsModel findStudentNotificationForCA(
+      @BindBean NotificationsConsumerCommandBean model);
+
+  @Mapper(StudentNotificationsModelMapper.class)
+  @SqlQuery("select id, ctx_user_id, ctx_class_id, ctx_course_id, ctx_unit_id, ctx_lesson_id, ctx_collection_id, "
+      + "current_item_id, current_item_type, current_item_title, notification_type, ctx_path_id, ctx_path_type,  "
+      + "ctx_ca_id, ctx_source, milestone_id, ctx_tx_code, ctx_tx_code_type from student_notifications "
+      + "where ctx_user_id = :userId and ctx_tx_code = :txCode and ctx_tx_code_type = :txCodeType "
+      + "and current_item_id = :currentItemId and current_item_type = :currentItemType "
+      + "and notification_type = :notificationType and ctx_path_id = :pathId and ctx_path_type = :pathType")
+  StudentNotificationsModel findStudentNotificationForTxCode(
+      @BindBean NotificationsConsumerCommandBean model);
+
 }

@@ -23,6 +23,9 @@ class FetchStudentNotificationsResponseModel {
     private Long updatedAt;
     private String milestoneId;
     private String ctxSource;
+    private Long ctxCaId;
+    private String ctxTxCode;
+    private String ctxTxCodeType;
 
     public Long getId() {
         return id;
@@ -151,4 +154,28 @@ class FetchStudentNotificationsResponseModel {
     public void setCtxSource(String ctxSource) {
         this.ctxSource = ctxSource;
     }
+
+	public Long getCtxCaId() {
+		return ctxCaId;
+	}
+
+	public void setCtxCaId(Long ctxCaId) {
+		this.ctxCaId = ctxCaId;
+	}
+
+	public String getCtxTxCode() {
+		return ctxTxCode;
+	}
+
+	public void setCtxTxCode(String ctxTxCode) {
+		this.ctxTxCode = ctxTxCode;
+	}
+
+	public String getCtxTxCodeType() {
+		return ctxTxCodeType;
+	}
+
+	public void setCtxTxCodeType(String ctxTxCodeType) {
+		this.ctxTxCodeType = ctxTxCodeType;
+	}
 }

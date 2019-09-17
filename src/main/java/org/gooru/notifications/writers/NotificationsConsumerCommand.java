@@ -23,6 +23,9 @@ class NotificationsConsumerCommand {
     private String notificationType;
     private String action;
     private String ctxSource;
+    private Long caId;
+    private String txCode;
+    private String txCodeType;
 
     static NotificationsConsumerCommand build(String input) {
         JsonObject json = new JsonObject(input);
@@ -39,6 +42,7 @@ class NotificationsConsumerCommand {
         command.unitId = UuidUtils.convertStringToUuid(event.getUnitId());
         command.lessonId = UuidUtils.convertStringToUuid(event.getLessonId());
         command.collectionId = UuidUtils.convertStringToUuid(event.getCollectionId());
+        command.caId = event.getCaId();
         command.currentItemId = UuidUtils.convertStringToUuid(event.getCurrentItemId());
         command.currentItemType = event.getCurrentItemType();
         command.pathId = (event.getPathId() == null || event.getPathId() == 0) ? null : event.getPathId();
@@ -46,6 +50,8 @@ class NotificationsConsumerCommand {
         command.notificationType = event.getNotificationType();
         command.action = event.getAction();
         command.ctxSource = ContextSourceFinder.findContextSource(event);
+        command.txCode = event.getTxCode();
+        command.txCodeType = event.getTxCodeType();
         return command;
     }
 
@@ -72,7 +78,11 @@ class NotificationsConsumerCommand {
     public UUID getCollectionId() {
         return collectionId;
     }
-
+    
+    public Long getCaId() {
+        return caId;
+    }
+    
     public UUID getCurrentItemId() {
         return currentItemId;
     }
@@ -101,7 +111,15 @@ class NotificationsConsumerCommand {
         return ctxSource;
     }
 
-    public void setCollectionId(UUID collectionId) {
+    public String getTxCode() {
+		return txCode;
+	}
+
+	public String getTxCodeType() {
+		return txCodeType;
+	}
+
+	public void setCollectionId(UUID collectionId) {
         // This code is to enable hack so that we can set collection id later. But we do this only if we are on
         // system path.
         if (isOnSystemPath()) {
@@ -141,7 +159,7 @@ class NotificationsConsumerCommand {
                    courseId + ", unitId=" + unitId + ", lessonId=" + lessonId + ", collectionId=" + collectionId +
                    ", currentItemId=" + currentItemId + ", currentItemType='" + currentItemType + '\'' +
                    ", pathType='" + pathType + '\'' + ", pathId=" + pathId + ", notificationType='" + notificationType +
-                   '\'' + ", action='" + action + '\'' + '}';
+                   '\'' + ", action='" + action + '\'' + ", txCode=" + txCode + ", txCodeType=" + txCodeType + '}';
     }
 
     public NotificationsConsumerCommandBean asBean() {
@@ -158,6 +176,9 @@ class NotificationsConsumerCommand {
         bean.pathType = pathType;
         bean.notificationType = notificationType;
         bean.action = action;
+        bean.txCode = txCode;
+        bean.txCodeType = txCodeType;
+        bean.setCaId(caId);
         return bean;
     }
 
@@ -174,6 +195,9 @@ class NotificationsConsumerCommand {
         private Long pathId;
         private String notificationType;
         private String action;
+        private String txCode;
+        private String txCodeType;
+        private Long caId;
 
         public UUID getUserId() {
             return userId;
@@ -270,5 +294,29 @@ class NotificationsConsumerCommand {
         public void setAction(String action) {
             this.action = action;
         }
+
+		public String getTxCode() {
+			return txCode;
+		}
+
+		public void setTxCode(String txCode) {
+			this.txCode = txCode;
+		}
+
+		public String getTxCodeType() {
+			return txCodeType;
+		}
+
+		public void setTxCodeType(String txCodeType) {
+			this.txCodeType = txCodeType;
+		}
+
+		public Long getCaId() {
+			return caId;
+		}
+
+		public void setCaId(Long caId) {
+			this.caId = caId;
+		}
     }
 }

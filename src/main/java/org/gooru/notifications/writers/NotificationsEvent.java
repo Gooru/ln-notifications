@@ -11,6 +11,7 @@ public class NotificationsEvent {
     private String unitId;
     private String lessonId;
     private String collectionId;
+    private Long caId;
     private String currentItemId;
     private String currentItemType;
     private String pathType;
@@ -18,6 +19,8 @@ public class NotificationsEvent {
     private String notificationType;
     private String action;
     private String contentSource;
+    private String txCode;
+    private String txCodeType;
 
     public String getUserId() {
         return userId;
@@ -126,4 +129,28 @@ public class NotificationsEvent {
     public void setContentSource(String contentSource) {
         this.contentSource = contentSource;
     }
+
+	public Long getCaId() {
+		return caId;
+	}
+
+	public void setCaId(Long caId) {
+		this.caId = caId;
+	}
+
+	public String getTxCode() {
+		return txCode;
+	}
+
+	public void setTxCode(String txCode) {
+		this.txCode = txCode;
+	}
+
+	public String getTxCodeType() {
+		return txCodeType;
+	}
+
+	public void setTxCodeType(String txCodeType) {
+		this.txCodeType = txCodeType;
+	}
 }

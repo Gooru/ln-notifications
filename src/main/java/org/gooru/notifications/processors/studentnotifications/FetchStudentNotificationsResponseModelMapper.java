@@ -34,6 +34,9 @@ public class FetchStudentNotificationsResponseModelMapper
         result.setUpdatedAt(r.getTimestamp(Attributes.UPDATED_AT).getTime());
         result.setCtxSource(r.getString(Attributes.CTX_SOURCE));
         result.setMilestoneId(r.getString(Attributes.MILESTONE_ID));
+        result.setCtxCaId(r.getLong(Attributes.CTX_CA_ID));
+        result.setCtxTxCode(r.getString(Attributes.CTX_TX_CODE));
+        result.setCtxTxCodeType(r.getString(Attributes.CTX_TX_CODE_TYPE));
         return result;
     }
 
@@ -58,5 +61,8 @@ public class FetchStudentNotificationsResponseModelMapper
         static final String UPDATED_AT = "updated_at";
         static final String CTX_SOURCE = "ctx_source";
         static final String MILESTONE_ID = "milestone_id";
+        static final String CTX_CA_ID = "ctx_ca_id";
+        static final String CTX_TX_CODE = "ctx_tx_code";
+        static final String CTX_TX_CODE_TYPE = "ctx_tx_code_type";
     }
 }

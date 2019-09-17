@@ -59,6 +59,7 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
         model.setUnitId(command.getUnitId());
         model.setLessonId(command.getLessonId());
         model.setCollectionId(command.getCollectionId());
+        model.setCaId(command.getCaId());
         model.setCurrentItemId(command.getCurrentItemId());
         model.setCurrentItemType(command.getCurrentItemType());
         model.setNotificationType(command.getNotificationType());
@@ -67,8 +68,12 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
         model.setClassCode(fetchClassCode());
         model.setCurrentItemTitle(fetchCurrentItemTitle());
         model.setCtxSource(command.getCtxSource());
-        model.setMilestoneId(
-            MilestoneFinder.build(DBICreator.getDbiForDefaultDS(), buildMilestoneFinderContext()).findMilestone());
+        model.setTxCode(command.getTxCode());
+        model.setTxCodeType(command.getTxCodeType());
+        if (command.getCtxSource() != null && command.getCtxSource().equalsIgnoreCase("coursemap")) {
+          model.setMilestoneId(MilestoneFinder.build(DBICreator.getDbiForDefaultDS(), buildMilestoneFinderContext())
+					.findMilestone());
+        }
     }
 
     private MilestoneFinderContext buildMilestoneFinderContext() {
@@ -83,7 +88,7 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
     private String fetchCurrentItemTitle() {
         return getDao().fetchCollectionTitle(command.getCurrentItemId());
     }
-
+    
     private boolean notificationExistsForSpecifiedContext() {
         model = fetchNotificationWithSpecifiedContext();
         return (model != null);
@@ -103,7 +108,11 @@ class TeacherSuggestionNotificationsWriterService implements NotificationsWriter
     }
 
     private StudentNotificationsModel fetchNotificationWithSpecifiedContext() {
-        if (command.getCollectionId() == null) {
+        if (command.getTxCode() != null && command.getTxCodeType() != null) {
+            model = getDao().findStudentNotificationForTxCode(command.asBean());
+        } else if (command.getCaId() != null) {
+            model = getDao().findStudentNotificationForCA(command.asBean());
+        } else if (command.getCollectionId() == null) {
             if (command.getPathId() == null) {
                 model = getDao().findStudentNotificationForContextWithoutCollectionAndPath(command.asBean());
             } else {

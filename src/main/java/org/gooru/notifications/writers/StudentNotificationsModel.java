@@ -15,6 +15,7 @@ public class StudentNotificationsModel {
     private UUID unitId;
     private UUID lessonId;
     private UUID collectionId;
+    private Long caId;
     private UUID currentItemId;
     private String currentItemTitle;
     private String currentItemType;
@@ -23,6 +24,8 @@ public class StudentNotificationsModel {
     private String notificationType;
     private String milestoneId;
     private String ctxSource;
+    private String txCode;
+    private String txCodeType;
 
     public Long getId() {
         return id;
@@ -151,4 +154,29 @@ public class StudentNotificationsModel {
     public void setCtxSource(String ctxSource) {
         this.ctxSource = ctxSource;
     }
+
+	public Long getCaId() {
+		return caId;
+	}
+
+	public void setCaId(Long caId) {
+		this.caId = caId;
+	}
+
+	public String getTxCode() {
+		return txCode;
+	}
+
+	public void setTxCode(String txCode) {
+		this.txCode = txCode;
+	}
+
+	public String getTxCodeType() {
+		return txCodeType;
+	}
+
+	public void setTxCodeType(String txCodeType) {
+		this.txCodeType = txCodeType;
+	}
+
 }

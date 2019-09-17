@@ -31,6 +31,9 @@ public class StudentNotificationsModelMapper implements ResultSetMapper<StudentN
         model.setPathType(r.getString(AttributeNames.CTX_PATH_TYPE));
         model.setCtxSource(r.getString(AttributeNames.CTX_SOURCE));
         model.setMilestoneId(r.getString(AttributeNames.MILESTONE_ID));
+        model.setCaId(r.getLong(AttributeNames.CTX_CA_ID));
+        model.setTxCode(r.getString(AttributeNames.CTX_TX_CODE));
+        model.setTxCodeType(r.getString(AttributeNames.CTX_TX_CODE_TYPE));
         return model;
     }
 
@@ -54,6 +57,9 @@ public class StudentNotificationsModelMapper implements ResultSetMapper<StudentN
         static final String CTX_PATH_TYPE = "ctx_path_type";
         static final String CTX_SOURCE = "ctx_source";
         static final String MILESTONE_ID = "milestone_id";
+        static final String CTX_CA_ID = "ctx_ca_id";
+        static final String CTX_TX_CODE = "ctx_tx_code";
+        static final String CTX_TX_CODE_TYPE = "ctx_tx_code_type";
 
     }
 }
