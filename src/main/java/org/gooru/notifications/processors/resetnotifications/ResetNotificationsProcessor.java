@@ -16,40 +16,40 @@ import org.slf4j.LoggerFactory;
  * @author ashish.
  */
 public class ResetNotificationsProcessor implements AsyncMessageProcessor {
-    private final Vertx vertx;
-    private final Message<JsonObject> message;
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResetNotificationsProcessor.class);
-    private final Future<MessageResponse> result;
-    private EventBusMessage eventBusMessage;
-    private ResetNotificationsService resetNotificationsService =
-        new ResetNotificationsService(DBICreator.getDbiForDefaultDS());
+  private final Vertx vertx;
+  private final Message<JsonObject> message;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ResetNotificationsProcessor.class);
+  private final Future<MessageResponse> result;
+  private EventBusMessage eventBusMessage;
+  private ResetNotificationsService resetNotificationsService =
+      new ResetNotificationsService(DBICreator.getDbiForDefaultDS());
 
-    public ResetNotificationsProcessor(Vertx vertx, Message<JsonObject> message) {
-        this.vertx = vertx;
-        this.message = message;
-        this.result = Future.future();
-    }
+  public ResetNotificationsProcessor(Vertx vertx, Message<JsonObject> message) {
+    this.vertx = vertx;
+    this.message = message;
+    this.result = Future.future();
+  }
 
-    @Override
-    public Future<MessageResponse> process() {
-        vertx.<MessageResponse>executeBlocking(future -> {
-            try {
-                this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
+  @Override
+  public Future<MessageResponse> process() {
+    vertx.<MessageResponse>executeBlocking(future -> {
+      try {
+        this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
 
-                ResetNotificationsCommand command = ResetNotificationsCommand.builder(eventBusMessage);
-                resetNotificationsService.reset(command);
-                future.complete(MessageResponseFactory.createNoContentResponse());
-            } catch (Throwable throwable) {
-                LOGGER.warn("Encountered exception", throwable);
-                future.fail(throwable);
-            }
-        }, asyncResult -> {
-            if (asyncResult.succeeded()) {
-                result.complete(asyncResult.result());
-            } else {
-                result.fail(asyncResult.cause());
-            }
-        });
-        return result;
-    }
+        ResetNotificationsCommand command = ResetNotificationsCommand.builder(eventBusMessage);
+        resetNotificationsService.reset(command);
+        future.complete(MessageResponseFactory.createNoContentResponse());
+      } catch (Throwable throwable) {
+        LOGGER.warn("Encountered exception", throwable);
+        future.fail(throwable);
+      }
+    }, asyncResult -> {
+      if (asyncResult.succeeded()) {
+        result.complete(asyncResult.result());
+      } else {
+        result.fail(asyncResult.cause());
+      }
+    });
+    return result;
+  }
 }

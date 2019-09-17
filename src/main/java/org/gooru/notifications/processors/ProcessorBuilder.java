@@ -14,25 +14,27 @@ import org.gooru.notifications.responses.MessageResponse;
  */
 public final class ProcessorBuilder {
 
-    public static AsyncMessageProcessor buildPlaceHolderExceptionProcessor(Vertx vertx, Message<JsonObject> message) {
-        return () -> {
-            Future<MessageResponse> future = Future.future();
-            future.fail(new IllegalStateException("Illegal State for processing command"));
-            return future;
-        };
-    }
+  public static AsyncMessageProcessor buildPlaceHolderExceptionProcessor(Vertx vertx,
+      Message<JsonObject> message) {
+    return () -> {
+      Future<MessageResponse> future = Future.future();
+      future.fail(new IllegalStateException("Illegal State for processing command"));
+      return future;
+    };
+  }
 
-    public static AsyncMessageProcessor buildFetchTeacherNotificationsProcessor(Vertx vertx,
-        Message<JsonObject> message) {
-        return new FetchTeacherNotificationsProcessor(vertx, message);
-    }
+  public static AsyncMessageProcessor buildFetchTeacherNotificationsProcessor(Vertx vertx,
+      Message<JsonObject> message) {
+    return new FetchTeacherNotificationsProcessor(vertx, message);
+  }
 
-    public static AsyncMessageProcessor buildFetchStudentNotificationsProcessor(Vertx vertx,
-        Message<JsonObject> message) {
-        return new FetchStudentNotificationsProcessor(vertx, message);
-    }
+  public static AsyncMessageProcessor buildFetchStudentNotificationsProcessor(Vertx vertx,
+      Message<JsonObject> message) {
+    return new FetchStudentNotificationsProcessor(vertx, message);
+  }
 
-    public static AsyncMessageProcessor buildResetNotificationProcessor(Vertx vertx, Message<JsonObject> message) {
-        return new ResetNotificationsProcessor(vertx, message);
-    }
+  public static AsyncMessageProcessor buildResetNotificationProcessor(Vertx vertx,
+      Message<JsonObject> message) {
+    return new ResetNotificationsProcessor(vertx, message);
+  }
 }

@@ -8,6 +8,6 @@ import org.gooru.notifications.responses.MessageResponse;
  */
 public interface AsyncMessageProcessor {
 
-    Future<MessageResponse> process();
+  Future<MessageResponse> process();
 
 }
