@@ -109,7 +109,12 @@ final class NotificationsEventValidator {
     private static final String ROUTE0 = "route0";
     private static final String SYSTEM = "system";
     private static final String TEACHER = "teacher";
-    private static final List<String> VALID_VALUES = Arrays.asList(SYSTEM, TEACHER, ROUTE0);
+    private static final String CA_TEACHER = "ca.teacher";
+    private static final String CA_SYSTEM = "ca.system";
+    private static final String PROFICIENCY_TEACHER = "proficiency.teacher";
+    private static final String PROFICIENCY_SYSTEM = "proficiency.system";
+    private static final List<String> VALID_VALUES = Arrays.asList(SYSTEM, TEACHER, ROUTE0,
+        CA_TEACHER, CA_SYSTEM, PROFICIENCY_TEACHER, PROFICIENCY_SYSTEM);
 
     private PathTypeValidator() {
       throw new AssertionError();
@@ -133,6 +138,22 @@ final class NotificationsEventValidator {
 
     static boolean isRoute0Path(String value) {
       return (value != null && value.equals(ROUTE0));
+    }
+
+    static boolean isCaSystemPath(String value) {
+      return (value != null && value.equals(CA_SYSTEM));
+    }
+
+    static boolean isCaTeacherPath(String value) {
+      return (value != null && value.equals(CA_TEACHER));
+    }
+
+    static boolean isProficiencySystemPath(String value) {
+      return (value != null && value.equals(PROFICIENCY_SYSTEM));
+    }
+
+    static boolean isProficiencyTeacherPath(String value) {
+      return (value != null && value.equals(PROFICIENCY_TEACHER));
     }
   }
 
