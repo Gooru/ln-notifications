@@ -22,3 +22,11 @@ CREATE UNIQUE INDEX sn_utxctppit_unq_idx
     ON student_notifications (ctx_user_id, ctx_class_id, ctx_ca_id, ctx_collection_id,
     current_item_id, current_item_type, notification_type, ctx_path_id, ctx_path_type)
     where ctx_source = 'proficiency';
+    
+ALTER TABLE student_notifications 
+DROP CONSTRAINT student_notifications_ctx_path_type_check, 
+ADD CONSTRAINT student_notifications_ctx_path_type_check CHECK (ctx_path_type::text = 
+ANY(ARRAY['system'::text, 'teacher'::text, 'route0'::text, 'ca.system'::text, 'ca.teacher'::text, 'proficiency.system'::text, 'proficiency.teacher'::text]));
+
+
+    
