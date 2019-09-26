@@ -1,8 +1,8 @@
 package org.gooru.notifications.writers;
 
-import io.vertx.core.json.JsonObject;
-import org.gooru.notifications.infra.utils.UuidUtils;
 import java.util.UUID;
+import org.gooru.notifications.infra.utils.UuidUtils;
+import io.vertx.core.json.JsonObject;
 
 /**
  * @author ashish.
@@ -49,7 +49,7 @@ class NotificationsConsumerCommand {
     command.pathType = event.getPathType();
     command.notificationType = event.getNotificationType();
     command.action = event.getAction();
-    command.ctxSource = ContextSourceFinder.findContextSource(event);
+    command.ctxSource = ContextSource.findContextSource(event);
     command.txCode = event.getTxCode();
     command.txCodeType = event.getTxCodeType();
     return command;

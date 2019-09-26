@@ -25,15 +25,15 @@ final class NotificationsEventValidator {
       throw new IllegalArgumentException("Invalid user id: " + event.getUserId());
     }
     if (StringUtil.isNullOrEmpty(event.getContentSource())
-        || !ContentSourceValidator.isValid(event.getContentSource())) {
+        || !ContextSource.isValid(event.getContentSource())) {
       throw new IllegalArgumentException("Invalid content source: " + event.getContentSource());
     }
 
-    if (event.getContentSource().equalsIgnoreCase("coursemap")) {
+    if (event.getContentSource().equalsIgnoreCase(ContextSource.CourseMap.getName())) {
       validateCoursemapContext(event);
-    } else if (event.getContentSource().equalsIgnoreCase("class-activity")) {
+    } else if (event.getContentSource().equalsIgnoreCase(ContextSource.ClassActivity.getName())) {
       validateClassactivityContext(event);
-    } else if (event.getContentSource().equalsIgnoreCase("proficiency")) {
+    } else if (event.getContentSource().equalsIgnoreCase(ContextSource.Proficiency.getName())) {
       validateProficiencyContext(event);
     }
 
@@ -68,8 +68,11 @@ final class NotificationsEventValidator {
     if (!UuidUtils.validateUuid(event.getClassId())) {
       throw new IllegalArgumentException("Invalid class id: " + event.getClassId());
     }
-    if (!UuidUtils.validateUuidAllowNull(event.getCollectionId())) {
+    if (!UuidUtils.validateUuid(event.getCollectionId())) {
       throw new IllegalArgumentException("Invalid collection id: " + event.getCollectionId());
+    }
+    if (event.getCaId() == null) {
+      throw new IllegalArgumentException("Invalid ca id: " + event.getCaId());
     }
   }
 
@@ -191,19 +194,6 @@ final class NotificationsEventValidator {
 
     static boolean isActionComplete(String value) {
       return COMPLETE.equals(value);
-    }
-  }
-
-  static final class ContentSourceValidator {
-    private static final List<String> VALID_VALUES =
-        Arrays.asList("class-activity", "coursemap", "proficiency");
-
-    private ContentSourceValidator() {
-      throw new AssertionError();
-    }
-
-    static boolean isValid(String value) {
-      return (value != null) && (VALID_VALUES.contains(value));
     }
   }
 

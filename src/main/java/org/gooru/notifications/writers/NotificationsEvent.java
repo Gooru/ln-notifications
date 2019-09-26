@@ -135,7 +135,11 @@ public class NotificationsEvent {
   }
 
   public void setCaId(Long caId) {
-    this.caId = caId;
+    if (caId == null || caId == 0) {
+      this.caId = null;
+    } else {
+      this.caId = caId;
+    }
   }
 
   public String getTxCode() {
