@@ -2,7 +2,6 @@ package org.gooru.notifications.infra.jdbi;
 
 import org.gooru.notifications.infra.components.DataSourceRegistry;
 import org.skife.jdbi.v2.DBI;
-
 import javax.sql.DataSource;
 
 /**
@@ -10,19 +9,19 @@ import javax.sql.DataSource;
  */
 public final class DBICreator {
 
-    private DBICreator() {
-        throw new AssertionError();
-    }
+  private DBICreator() {
+    throw new AssertionError();
+  }
 
-    private static DBI createDBI(DataSource dataSource) {
-        DBI dbi = new DBI(dataSource);
-        dbi.registerArgumentFactory(new PostgresIntegerArrayArgumentFactory());
-        dbi.registerArgumentFactory(new PostgresStringArrayArgumentFactory());
-        dbi.registerArgumentFactory(new PostgresUUIDArrayArgumentFactory());
-        return dbi;
-    }
+  private static DBI createDBI(DataSource dataSource) {
+    DBI dbi = new DBI(dataSource);
+    dbi.registerArgumentFactory(new PostgresIntegerArrayArgumentFactory());
+    dbi.registerArgumentFactory(new PostgresStringArrayArgumentFactory());
+    dbi.registerArgumentFactory(new PostgresUUIDArrayArgumentFactory());
+    return dbi;
+  }
 
-    public static DBI getDbiForDefaultDS() {
-        return createDBI(DataSourceRegistry.getInstance().getDefaultDataSource());
-    }
+  public static DBI getDbiForDefaultDS() {
+    return createDBI(DataSourceRegistry.getInstance().getDefaultDataSource());
+  }
 }

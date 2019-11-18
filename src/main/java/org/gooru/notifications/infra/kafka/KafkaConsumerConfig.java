@@ -1,7 +1,6 @@
 package org.gooru.notifications.infra.kafka;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import java.util.List;
 import java.util.Properties;
 
@@ -10,14 +9,14 @@ import java.util.Properties;
  */
 public interface KafkaConsumerConfig {
 
-    int getInstances();
+  int getInstances();
 
-    List<String> getTopics();
+  List<String> getTopics();
 
-    Properties getProperties();
+  Properties getProperties();
 
-    static KafkaConsumerConfig build(JsonNode config) {
-        return new KafkaConsumerConfigImpl(config);
-    }
+  static KafkaConsumerConfig build(JsonNode config) {
+    return new KafkaConsumerConfigImpl(config);
+  }
 
 }

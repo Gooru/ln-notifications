@@ -7,32 +7,32 @@ import java.util.UUID;
  */
 
 public class MilestoneFinderContext {
-    private final UUID classId;
-    private final UUID courseId;
-    private final UUID unitId;
-    private final UUID lessonId;
+  private final UUID classId;
+  private final UUID courseId;
+  private final UUID unitId;
+  private final UUID lessonId;
 
 
-    public MilestoneFinderContext(UUID classId, UUID courseId, UUID unitId, UUID lessonId) {
-        this.classId = classId;
-        this.courseId = courseId;
-        this.unitId = unitId;
-        this.lessonId = lessonId;
-    }
+  public MilestoneFinderContext(UUID classId, UUID courseId, UUID unitId, UUID lessonId) {
+    this.classId = classId;
+    this.courseId = courseId;
+    this.unitId = unitId;
+    this.lessonId = lessonId;
+  }
 
-    public UUID getClassId() {
-        return classId;
-    }
+  public UUID getClassId() {
+    return classId;
+  }
 
-    public UUID getCourseId() {
-        return courseId;
-    }
+  public UUID getCourseId() {
+    return courseId;
+  }
 
-    public UUID getUnitId() {
-        return unitId;
-    }
+  public UUID getUnitId() {
+    return unitId;
+  }
 
-    public UUID getLessonId() {
-        return lessonId;
-    }
+  public UUID getLessonId() {
+    return lessonId;
+  }
 }

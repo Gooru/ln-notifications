@@ -10,16 +10,18 @@ import org.slf4j.LoggerFactory;
 
 class NotificationsWriterServiceImpl implements NotificationsWriterService {
 
-    private final DBI dbi;
-    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsWriterServiceImpl.class);
+  private final DBI dbi;
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(NotificationsWriterServiceImpl.class);
 
-    NotificationsWriterServiceImpl(DBI dbi) {
-        this.dbi = dbi;
-    }
+  NotificationsWriterServiceImpl(DBI dbi) {
+    this.dbi = dbi;
+  }
 
-    @Override
-    public void handleNotifications(NotificationsConsumerCommand command) {
-        LOGGER.error("No writer found for command: '{}'", command.toString());
-        throw new IllegalArgumentException("No handler found for notification type:" + command.getNotificationType());
-    }
+  @Override
+  public void handleNotifications(NotificationsConsumerCommand command) {
+    LOGGER.error("No writer found for command: '{}'", command.toString());
+    throw new IllegalArgumentException(
+        "No handler found for notification type:" + command.getNotificationType());
+  }
 }

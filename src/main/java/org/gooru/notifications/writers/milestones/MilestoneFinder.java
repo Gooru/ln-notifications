@@ -9,14 +9,14 @@ import org.skife.jdbi.v2.DBI;
 
 public interface MilestoneFinder {
 
-    String findMilestone();
+  String findMilestone();
 
-    static MilestoneFinder build(DBI dbi, MilestoneFinderContext context) {
-        return new MilestoneFinderImpl(dbi, context);
-    }
+  static MilestoneFinder build(DBI dbi, MilestoneFinderContext context) {
+    return new MilestoneFinderImpl(dbi, context);
+  }
 
-    static MilestoneFinder build(MilestoneFinderContext context) {
-        return new MilestoneFinderImpl(DBICreator.getDbiForDefaultDS(), context);
-    }
+  static MilestoneFinder build(MilestoneFinderContext context) {
+    return new MilestoneFinderImpl(DBICreator.getDbiForDefaultDS(), context);
+  }
 
 }

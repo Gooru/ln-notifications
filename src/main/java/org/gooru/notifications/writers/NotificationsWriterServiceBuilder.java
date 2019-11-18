@@ -9,30 +9,30 @@ import org.skife.jdbi.v2.DBI;
 
 final class NotificationsWriterServiceBuilder {
 
-    NotificationsWriterServiceBuilder() {
-        throw new AssertionError();
-    }
+  NotificationsWriterServiceBuilder() {
+    throw new AssertionError();
+  }
 
-    static NotificationsWriterService build(String notificationType, DBI dbi) {
-        switch (notificationType) {
-            case "teacher.override":
-                return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
-            case "teacher.suggestion":
-                return new TeacherSuggestionNotificationsWriterService(dbi);
-            case "teacher.grading.complete":
-                return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
-            case "student.self.report":
-                return new StudentSelfReportNotificationsWriterService(dbi);
-            case "student.gradable.submission":
-                return new StudentGradableSubmissionNotificationsWriterService(dbi);
-            default:
-                return new NotificationsWriterServiceImpl(DBICreator.getDbiForDefaultDS());
-        }
+  static NotificationsWriterService build(String notificationType, DBI dbi) {
+    switch (notificationType) {
+      case "teacher.override":
+        return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
+      case "teacher.suggestion":
+        return new TeacherSuggestionNotificationsWriterService(dbi);
+      case "teacher.grading.complete":
+        return new TeacherOverrideAndGradingCompleteNotificationsWriterService(dbi);
+      case "student.self.report":
+        return new StudentSelfReportNotificationsWriterService(dbi);
+      case "student.gradable.submission":
+        return new StudentGradableSubmissionNotificationsWriterService(dbi);
+      default:
+        return new NotificationsWriterServiceImpl(DBICreator.getDbiForDefaultDS());
     }
+  }
 
-    static NotificationsWriterService build(String notificationType) {
-        return build(notificationType, DBICreator.getDbiForDefaultDS());
-    }
+  static NotificationsWriterService build(String notificationType) {
+    return build(notificationType, DBICreator.getDbiForDefaultDS());
+  }
 
 
 }
